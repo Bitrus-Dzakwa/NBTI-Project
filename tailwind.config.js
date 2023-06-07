@@ -18,6 +18,9 @@ export default {
           900: "#475443",
         },
       },
+      backgroundImage: {
+        banner: "url('/image11.png')",
+      },
     },
   },
   plugins: [],

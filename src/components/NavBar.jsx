@@ -21,12 +21,12 @@ function NavBar() {
     return () => window.removeEventListener("scroll", transitionNavBar);
   }, []);
 
-  const nav = "py-2 w-full h-50 z-10";
-  const nav__grey = "bg-yellowy-900";
-  const nav__black = "bg-[#EA9715]";
+  const nav = "py-2 w-full h-50 z-10 ";
+  const nav__grey = "bg-yellowy-900 sticky";
+  const nav__black = "bg-[#EA9715] fixed top-0 left-0 shadow-lg z-50";
 
   return (
-    <div className="sticky top-0 flex w-full">
+    <div className="w-full relative">
       <nav className={`${nav} ${!show && nav__grey} ${show && nav__black}`}>
         <div className="flex justify-between items-center w-[90%] mx-auto">
           <Link to="/">

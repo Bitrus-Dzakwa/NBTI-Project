@@ -32,10 +32,10 @@ function NavLinks() {
           </li>
           <li>
             <NavLink
-              to="/categories"
+              to="/donate"
               className={({ isActive }) => (isActive ? active : notActive)}
             >
-              Categories
+              Donate
             </NavLink>
           </li>
           <li>

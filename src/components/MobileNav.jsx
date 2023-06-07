@@ -40,13 +40,13 @@ function MobileNav({ setIsMenuOpen }) {
         </li>
         <li>
           <NavLink
-            to="/categories"
+            to="/donate"
             onClick={() => {
               setIsMenuOpen(false);
             }}
             className={({ isActive }) => (isActive ? active : notActive)}
           >
-            Categories
+            Donate
           </NavLink>
         </li>
         <li>

@@ -1,9 +1,8 @@
-import { NavBar, Banner } from "../components";
+import { Banner } from "../components";
 
 function Home() {
   return (
     <div>
-      <NavBar />
       <Banner />
     </div>
   );

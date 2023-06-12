@@ -1,10 +1,10 @@
-import { Banner } from "../components";
+import { AboutSection, Banner } from "../components";
 
 function Home() {
   return (
     <div>
       <Banner />
-      <Banner />
+      <AboutSection />
     </div>
   );
 }

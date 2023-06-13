@@ -2,7 +2,7 @@ import { useState } from "react";
 import { FiMenu } from "react-icons/fi";
 import Headroom from "react-headroom";
 
-import Logo from "../assets/mainLogo.png";
+import Logo from "../assets/logo1.png";
 import NavLinks from "./NavLinks";
 import MobileNav from "./MobileNav";
 import { Link } from "react-router-dom";

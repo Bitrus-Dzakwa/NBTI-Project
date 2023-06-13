@@ -14,9 +14,9 @@ function Banner() {
         className="w-full h-full bg-left bg-no-repeat bg-contain object-contain absolute z-1 backdrop-blur-lg"
       />
       <div className="p-8 order-last md:order-1 z-10 md:w-[90%]">
-        <h1 className="capitalize text-greengray-900 text-4xl md:text-5xl  font-semibold">
-          Bringing <span className="text-yellowy-900">the word</span> of God to
-          every language.
+        <h1 className="capitalize text-greengray-900 text-4xl md:text-5xl md:w-[95%] font-semibold">
+          Neighborhood <span className="text-yellowy-900"> Bible </span>
+          Translation initiative.
         </h1>
         <p className="text-sm md:text-base text-greengray-900 mt-6 md:mt-8 ">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo

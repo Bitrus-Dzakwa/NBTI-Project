@@ -1,6 +1,7 @@
 import {
   AboutSection,
   Banner,
+  Footer,
   JoinUs,
   NewsSection,
   Testimonial,
@@ -14,6 +15,7 @@ function Home() {
       <JoinUs />
       <Testimonial />
       <NewsSection />
+      <Footer />
     </div>
   );
 }

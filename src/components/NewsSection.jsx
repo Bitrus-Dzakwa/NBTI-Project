@@ -7,11 +7,11 @@ import { BsArrowUpRight } from "react-icons/bs";
 
 function NewsSection() {
   return (
-    <div className="bg-[#FFFBF2]">
+    <div className="bg-[#FFFBF2] md:pb-20">
       <article className="flex flex-col md:flex-row justify-between items-start px-4 md:px-16 pt-12 md:pt-20 pb-4">
         <div>
           <h3 className="text-yellowy-900 uppercase font-semibold flex items-center gap-4">
-            join us
+            News
             <span>
               <img src={arrDwn} alt="arrow" className="w-8 h-8" />
             </span>

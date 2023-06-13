@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import Button from "./Button";
 
 import { HiOutlineChevronRight, HiOutlineUserCircle } from "react-icons/hi";
@@ -32,10 +32,18 @@ function NavLinks() {
           </li>
           <li>
             <NavLink
-              to="/donate"
+              to="/works"
               className={({ isActive }) => (isActive ? active : notActive)}
             >
-              Donate
+              Our Works
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/getInvolved"
+              className={({ isActive }) => (isActive ? active : notActive)}
+            >
+              Get Involved
             </NavLink>
           </li>
           <li>
@@ -54,22 +62,18 @@ function NavLinks() {
               Contact
             </NavLink>
           </li>
-          <li>
-            <NavLink
-              to="/volunteer"
-              className={({ isActive }) => (isActive ? active : notActive)}
-            >
-              Volunteer
-            </NavLink>
-          </li>
         </ul>
         <div className="hidden md:flex gap-8">
-          <Button title="sign in" icon={<HiOutlineUserCircle />} />
-          <Button
-            title="Get Started"
-            isBg={true}
-            icon={<HiOutlineChevronRight />}
-          />
+          <Link to="/volunteer">
+            <Button title="Volunteer" icon={<HiOutlineUserCircle />} />
+          </Link>
+          <Link to="/donate">
+            <Button
+              title="Donate Now"
+              isBg={true}
+              icon={<HiOutlineChevronRight />}
+            />
+          </Link>
         </div>
       </div>
     </>

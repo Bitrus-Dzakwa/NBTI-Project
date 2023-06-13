@@ -40,13 +40,24 @@ function MobileNav({ setIsMenuOpen }) {
         </li>
         <li>
           <NavLink
-            to="/donate"
+            to="/works"
             onClick={() => {
               setIsMenuOpen(false);
             }}
             className={({ isActive }) => (isActive ? active : notActive)}
           >
-            Donate
+            Our Works
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="/getInvolved"
+            onClick={() => {
+              setIsMenuOpen(false);
+            }}
+            className={({ isActive }) => (isActive ? active : notActive)}
+          >
+            Get Involved
           </NavLink>
         </li>
         <li>
@@ -71,34 +82,24 @@ function MobileNav({ setIsMenuOpen }) {
             Contact
           </NavLink>
         </li>
-        <li>
-          <NavLink
+
+        <div className="flex flex-col items-center gap-4">
+          <Link
             to="/volunteer"
             onClick={() => {
               setIsMenuOpen(false);
             }}
-            className={({ isActive }) => (isActive ? active : notActive)}
           >
-            Volunteer
-          </NavLink>
-        </li>
-        <div className="flex flex-col items-center gap-4">
-          <Link
-            to="/login"
-            onClick={() => {
-              setIsMenuOpen(false);
-            }}
-          >
-            <Button title="sign in" icon={<HiOutlineUserCircle />} />
+            <Button title="Volunteer" icon={<HiOutlineUserCircle />} />
           </Link>
           <Link
-            to="/started"
+            to="/donate"
             onClick={() => {
               setIsMenuOpen(false);
             }}
           >
             <Button
-              title="Get Started"
+              title="Donate Now"
               isBg={true}
               icon={<HiOutlineChevronRight />}
             />

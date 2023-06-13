@@ -1,10 +1,19 @@
-import { AboutSection, Banner } from "../components";
+import {
+  AboutSection,
+  Banner,
+  JoinUs,
+  NewsSection,
+  Testimonial,
+} from "../components";
 
 function Home() {
   return (
     <div>
       <Banner />
       <AboutSection />
+      <JoinUs />
+      <Testimonial />
+      <NewsSection />
     </div>
   );
 }

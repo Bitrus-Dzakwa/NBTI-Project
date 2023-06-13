@@ -7,7 +7,7 @@ import bannerImage from "../assets/image9.png";
 
 function Banner() {
   return (
-    <header className="w-full bg-amber-100 md:grid flex flex-col md:grid-cols-2 relative md:py-20 md:px-16">
+    <header className="w-full bg-[#FFFBF2] md:grid flex flex-col md:grid-cols-2 relative md:py-20 md:px-16">
       <img
         src={bgImg}
         alt="backImage"

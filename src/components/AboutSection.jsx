@@ -11,7 +11,7 @@ import bannerImage from "../assets/frame19.png";
 
 function Banner() {
   return (
-    <section className="w-full bg-stone-50 md:grid flex flex-col md:grid-cols-2 relative md:py-20 md:px-16">
+    <section className="w-full bg-white md:grid flex flex-col md:grid-cols-2 relative md:py-20 md:px-16">
       <img
         src={bgImg}
         alt="backImage"
@@ -36,25 +36,25 @@ function Banner() {
           of the Bible.
         </p>
         <div className="md:grid gap-4 grid-cols-4 mt-6 md:w-full md:mt-8">
-          <div className="flex flex-col justify-center items-center gap-4 p-4 border text-center border-greengray-900 rounded-sm bg-stone-50 mb-5 md:mb-0 hover:scale-95">
+          <div className="flex flex-col justify-center items-center gap-4 p-4 border text-center border-greengray-900 rounded-sm bg-white shadow-sm mb-5 md:mb-0 hover:scale-95">
             <MdVideoLibrary size={30} />
             <p className="font-medium md:font-semibold text-greengray-900">
               Audio and Video Production
             </p>
           </div>
-          <div className="flex flex-col justify-center items-center gap-4 p-4 border text-center border-greengray-900 rounded-sm bg-stone-50 mb-5 md:mb-0 hover:scale-95">
+          <div className="flex flex-col justify-center items-center gap-4 p-4 border text-center border-greengray-900 rounded-sm bg-white shadow-sm mb-5 md:mb-0 hover:scale-95">
             <IoLanguage size={30} />
             <p className="font-medium md:font-semibold text-greengray-900">
               Language Research
             </p>
           </div>
-          <div className="flex flex-col justify-center items-center gap-4 p-4 border text-center border-greengray-900 rounded-sm bg-stone-50 mb-5 md:mb-0 hover:scale-95">
+          <div className="flex flex-col justify-center items-center gap-4 p-4 border text-center border-greengray-900 rounded-sm bg-white shadow-sm mb-5 md:mb-0 hover:scale-95">
             <FaBookOpen size={30} />
             <p className="font-medium md:font-semibold text-greengray-900">
               Publication Services
             </p>
           </div>
-          <div className="flex flex-col justify-center items-center gap-4 p-4 border text-center border-greengray-900 rounded-sm bg-stone-50 mb-5 md:mb-0 hover:scale-95">
+          <div className="flex flex-col justify-center items-center gap-4 p-4 border text-center border-greengray-900 rounded-sm bg-white shadow-sm mb-5 md:mb-0 hover:scale-95">
             <RiTranslate size={30} />
             <p className="font-medium md:font-semibold text-greengray-900">
               Translation Services

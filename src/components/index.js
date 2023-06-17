@@ -10,3 +10,4 @@ export { default as NewsCard } from "./NewsCard";
 export { default as Testimonial } from "./Testimonial";
 export { default as Testimony } from "./Testimony";
 export { default as Footer } from "./Footer";
+export { default as VolunteerSection } from "./VolunteerSection";

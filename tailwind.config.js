@@ -17,6 +17,9 @@ export default {
           100: "#475443a9",
           900: "#475443",
         },
+        darkishtext: {
+          100: "#001E16"
+        }
       },
       backgroundImage: {
         banner: "url('/image11.png')",

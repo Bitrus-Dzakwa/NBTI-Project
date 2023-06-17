@@ -38,7 +38,7 @@ function JoinUs() {
                 will help us in translating the Bible into more languages.
               </p>
               <Link
-                to="/about"
+                to="/donate"
                 className="flex items-center gap-4 text-yellowy-900 pt-2"
               >
                 <p className="text-yellowy-900 font-semibold">Process</p>

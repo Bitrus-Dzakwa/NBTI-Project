@@ -13,7 +13,7 @@ function DonateSection() {
                 <DonateForm />
             </section>
 
-            <section className="w-2/5 hidden md:block">
+            <section className="w-[45%] hidden md:block">
                 <img src={DonatePageIMG} alt="Generic Image of people holding hands" />
             </section>
 

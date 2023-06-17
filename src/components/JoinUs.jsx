@@ -55,7 +55,7 @@ function JoinUs() {
                 word of God. We need translators, writers, editors, and more.
               </p>
               <Link
-                to="/about"
+                to="/volunteer"
                 className="flex items-center gap-4 text-yellowy-900 pt-2"
               >
                 <p className="text-yellowy-900 font-semibold">Process</p>

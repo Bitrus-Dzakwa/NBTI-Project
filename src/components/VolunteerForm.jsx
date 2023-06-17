@@ -30,7 +30,7 @@ const VolunteerForm = memo(function VolunteerForm() {
             <label className="text-base text-darkishtext-100" id="email">Email</label> <br />
             <input className="w-full rounded-md mt-2  py-2 px-4 bg-[#103f021a]"
               type="text" name="email" id="email"
-              placeholder="Full name goes here"
+              placeholder="e.g YourEmail@gmail.com"
             />
           </div>
 
@@ -38,7 +38,7 @@ const VolunteerForm = memo(function VolunteerForm() {
             <label className="text-base text-darkishtext-100" id="phone_number">Phone Number</label> <br />
             <input className="w-full rounded-md mt-2 py-2 px-4 bg-[#103f021a]"
               type="text" name="phone_number" id="phone_number"
-              placeholder="Full name goes here"
+              placeholder="Mobile Number e.g +234812345678"
             />
           </div>
 
@@ -46,28 +46,33 @@ const VolunteerForm = memo(function VolunteerForm() {
             <label className="text-base text-darkishtext-100" id="skills">Skills</label> <br />
             <input className="w-full h-12 max-h-14 rounded-md mt-2 py-2 px-4 bg-[#103f021a]"
               type="text" name="skills" id="skills"
-              placeholder="Full name goes here"
+              placeholder="Skills e.g Event-Center-Sourcing, Cold-Emailing, etc."
             />
           </div>
 
           <div className="w-full">
-            <label className="text-base text-darkishtext-100" id="area">Area Volunteering</label> <br />
+            <label className="text-base text-darkishtext-100" id="volunteer_area">Area Volunteering</label> <br />
             <select className="w-full rounded-md mt-2 py-2 px-4 bg-[#103f021a]"
-              type="text" name="area" id="area"
+              type="text" name="volunteer_area" id="volunteer_area"
               placeholder="Full name goes here"
             >
-              <option></option>
-              <option></option>
-              <option></option>
+              <option>Event Setting</option>
+              <option>Outreaches</option>
+              <option>Translation (Text)</option>
+              <option>Translation (Audio)</option>
             </select>
           </div>
 
           <div className="w-full">
             <label className="text-base text-darkishtext-100" id="availability">Availability</label> <br />
             <textarea className="w-full rounded-md mt-2 py-2 px-4 bg-[#103f021a]"
-            placeholder="Explain your availability" cols={6} autoComplete="true" autoCorrect="true" autoSave="true"
-             />
+              placeholder="Explain your availability" cols={6} autoComplete="true" autoCorrect="true" autoSave="true"
+            />
           </div>
+
+          <button className="mt-6 mx-auto max-w-sm w-80 py-4 px-4 text-center bg-[#475443] text-white text-xl leading-6" type="submit" value="Volunteer Now" onSubmit={OnFormSubmit}>
+            Volunteer Now
+          </button>
 
 
         </form>

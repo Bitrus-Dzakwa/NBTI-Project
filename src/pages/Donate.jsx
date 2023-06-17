@@ -1,5 +1,11 @@
+import DonateSection from "../components/DonateSection";
+
 function Donate() {
-  return <div>Donate</div>;
+  return (
+    <div>
+      <DonateSection />
+    </div>
+  );
 }
 
 export default Donate;

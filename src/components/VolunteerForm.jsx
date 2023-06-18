@@ -6,10 +6,10 @@ const VolunteerForm = memo(function VolunteerForm() {
 
   const OnFormSubmit = useCallback(
     (e) => {
-      console.log(e);
+      console.log("[Volunteer Form Submitted]:", e);
       e.preventDefault();
     },
-    [])
+    []);
 
 
   return (
@@ -70,12 +70,14 @@ const VolunteerForm = memo(function VolunteerForm() {
             />
           </div>
 
-          <button className="mt-6 mx-auto max-w-sm w-80 py-4 px-4 text-center bg-[#475443] text-white text-xl leading-6" type="submit" value="Volunteer Now" onSubmit={OnFormSubmit}>
+          <button className="mt-6 mx-auto max-w-sm w-80 py-4 px-4 text-center bg-[#475443] text-white text-xl leading-6"
+            type="submit" value="Volunteer Now" onSubmit={OnFormSubmit}
+          >
             Volunteer Now
           </button>
 
-
         </form>
+
       </section>
 
     </>

@@ -8,7 +8,7 @@ function DonateSection() {
     return (
         <div className="flex ">
 
-            <section className="pt-10 px-5 md:px-[3.75rem]">
+            <section className="pt-5 md:pt-10 px-5 md:px-[3.75rem]">
                 <DonateHeader />
                 <DonateForm />
             </section>

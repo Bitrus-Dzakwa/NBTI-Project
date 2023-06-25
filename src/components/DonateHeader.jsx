@@ -14,7 +14,7 @@ const DonateHeader = memo(function DonateHeader() {
                     Back To Home
                 </h3>
             </Link>
-            <header className="flex flex-col gap-3 px-10 mt-8 text-center">
+            <header className="flex flex-col gap-3 px-10 mt-4 md:mt-8 text-center">
                 <h3 className="text-center text-darkishtext-100 text-[1.75rem] leading-10 font-bold" > Make a Difference Today </h3>
                 <p className="text-sm font-normal text-[#001e16cc]">Lorem ipsum dolor sit amet consectetur adipescent elit dolor posuere vel venenatis eusit massa volutpat. </p>
                 <hr className="h-[3px] px-14 text-greengray-200"/>

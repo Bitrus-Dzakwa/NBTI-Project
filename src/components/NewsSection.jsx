@@ -33,15 +33,18 @@ function NewsSection() {
       <div className="grid grid-cols-1 md:grid-cols-3 px-8 md:px-24 gap-10 place-content-center">
         <NewsCard
           img={blogImg1}
+          title="NBTI partners with local community to translate Bible into indigenous language"
           content="NBTI is a Bible Translation agency that guides mother tongues to own its project for self sustenance, self governance and self sponsored for the owners to take pride in owning the project.
 "
         />
         <NewsCard
           img={blogImg2}
+          title="Translation Workshop Completed"
           content=" Every mother tongue that is guided by NBTI will undergo ICTP to open the crude mind and widen the scope of the mother tongue owners by inductive awareness to know what is all about translation and is tied to time to deliver for public consumption"
         />
         <NewsCard
           img={blogImg3}
+          title="Community based team checking event a success"
           content="When properly managed the translation which was to take years can reduce to visible time possible to use the product for the public consumption."
         />
         {/* <NewsCard img={banner} /> */}

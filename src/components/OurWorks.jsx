@@ -26,7 +26,7 @@ function OurWorks() {
       </div>
       <div className="p-8 order-last md:order-1 z-10 ">
         <h3 className="text-yellowy-900 uppercase font-semibold">Our Work</h3>
-        <h1 className="text-greengray-900 text-3xl md:text-4xl font-semibold mt-4 md:mt-8">
+        <h1 className="text-greengray-900 text-2xl font-semibold mt-4 md:mt-8">
           When properly managed the translation which was to take years can
           reduce to visible time possible to use the product for the public
           consumption.

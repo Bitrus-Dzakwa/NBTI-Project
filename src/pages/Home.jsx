@@ -1,5 +1,5 @@
 import {
-  AboutSection,
+  OurWorks,
   Banner,
   Footer,
   JoinUs,
@@ -11,7 +11,7 @@ function Home() {
   return (
     <div>
       <Banner />
-      <AboutSection />
+      <OurWorks />
       <JoinUs />
       <Testimonial />
       <NewsSection />

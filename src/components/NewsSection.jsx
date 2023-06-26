@@ -1,6 +1,8 @@
 import NewsCard from "./NewsCard";
-import bannerImage from "../assets/image19.png";
-import banner from "../assets/1.jpg";
+import blogImg1 from "../assets/blogImg1.jpeg";
+import blogImg2 from "../assets/blogImg2.jpeg";
+import blogImg3 from "../assets/blogImg3.png";
+// import banner from "../assets/1.jpg";
 import arrDwn from "../assets/arr-down.png";
 import Button from "./Button";
 import { BsArrowUpRight } from "react-icons/bs";
@@ -29,9 +31,19 @@ function NewsSection() {
         </div>
       </article>
       <div className="grid grid-cols-1 md:grid-cols-3 px-8 md:px-24 gap-10 place-content-center">
-        <NewsCard img={bannerImage} />
-        <NewsCard img={banner} />
-        <NewsCard img={bannerImage} />
+        <NewsCard
+          img={blogImg1}
+          content="NBTI is a Bible Translation agency that guides mother tongues to own its project for self sustenance, self governance and self sponsored for the owners to take pride in owning the project.
+"
+        />
+        <NewsCard
+          img={blogImg2}
+          content=" Every mother tongue that is guided by NBTI will undergo ICTP to open the crude mind and widen the scope of the mother tongue owners by inductive awareness to know what is all about translation and is tied to time to deliver for public consumption"
+        />
+        <NewsCard
+          img={blogImg3}
+          content="When properly managed the translation which was to take years can reduce to visible time possible to use the product for the public consumption."
+        />
         {/* <NewsCard img={banner} /> */}
       </div>
     </div>

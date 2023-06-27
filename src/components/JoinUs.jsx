@@ -28,57 +28,59 @@ function JoinUs() {
         </h1>
         <div>
           <div className="ml-2 md:ml-4 flex flex-col gap-4">
-            <div className="bg-white p-4 hover:shadow-lg hover:scale-105 transition-all">
-              <h3 className="text-greengray-900 font-semibold text-lg flex gap-4 items-center mb-2">
-                <RiHeartAddFill />
-                <span>Donate</span>
-              </h3>
-              <p className="text-sm">
-                Support us financially by donating to our cause. Your donation
-                will help us in translating the Bible into more languages.
-              </p>
-              <Link
-                to="/donate"
-                className="flex items-center gap-4 text-yellowy-900 pt-2"
-              >
-                <p className="text-yellowy-900 font-semibold">Process</p>
-                <BsChevronRight size={20} />
-              </Link>
-            </div>
-            <div className="bg-white p-4 hover:shadow-lg hover:scale-105 transition-all">
-              <h3 className="text-greengray-900 font-semibold text-lg flex gap-4 items-center mb-2">
-                <MdVolunteerActivism />
-                <span>Volunteer</span>
-              </h3>
-              <p className="text-sm">
-                Join us as a volunteer and help us in our mission to spread the
-                word of God. We need translators, writers, editors, and more.
-              </p>
-              <Link
-                to="/volunteer"
-                className="flex items-center gap-4 text-yellowy-900 pt-2"
-              >
-                <p className="text-yellowy-900 font-semibold">Process</p>
-                <BsChevronRight size={20} />
-              </Link>
-            </div>
-            <div className="bg-white p-4 hover:shadow-lg hover:scale-105 transition-all">
-              <h3 className="text-greengray-900 font-semibold text-lg flex gap-4 items-center mb-2">
-                <TbHeartHandshake />
-                <span>Sponsorship Opportunities</span>
-              </h3>
-              <p className="text-sm">
-                Support us financially by donating to our cause. Your donation
-                will help us in translating the Bible into more languages.
-              </p>
-              <Link
-                to="/about"
-                className="flex items-center gap-4 text-yellowy-900 pt-2"
-              >
-                <p className="text-yellowy-900 font-semibold">Process</p>
-                <BsChevronRight size={20} />
-              </Link>
-            </div>
+            <Link to="/donate">
+              <div className="bg-white p-4 hover:shadow-lg hover:scale-105 transition-all">
+                <h3 className="text-greengray-900 font-semibold text-lg flex gap-4 items-center mb-2">
+                  <RiHeartAddFill size={25} />
+                  <span>Donate</span>
+                </h3>
+                <p className="text-sm">
+                  Support us financially by donating to our cause. Your donation
+                  will help us in translating the Bible into more languages.
+                </p>
+                <div className="flex items-center gap-4 text-yellowy-900 pt-2">
+                  <p className="text-yellowy-900 font-semibold">Donate</p>
+                  <BsChevronRight size={20} />
+                </div>
+              </div>
+            </Link>
+            <Link to="/volunteer">
+              <div className="bg-white p-4 hover:shadow-lg hover:scale-105 transition-all">
+                <h3 className="text-greengray-900 font-semibold text-lg flex gap-4 items-center mb-2">
+                  <MdVolunteerActivism size={25} />
+                  <span>Volunteer</span>
+                </h3>
+                <p className="text-sm">
+                  Join us as a volunteer and help us in our mission to spread
+                  the word of God. We need translators, writers, editors, and
+                  more.
+                </p>
+                <div className="flex items-center gap-4 text-yellowy-900 pt-2">
+                  <p className="text-yellowy-900 font-semibold">Volunteer</p>
+                  <BsChevronRight size={20} />
+                </div>
+              </div>
+            </Link>
+            <Link to="/volunteer">
+              <div className="bg-white p-4 hover:shadow-lg hover:scale-105 transition-all">
+                <h3 className="text-greengray-900 font-semibold text-lg flex gap-4 items-center mb-2">
+                  <TbHeartHandshake size={25} />
+                  <span>Pray for Us</span>
+                </h3>
+                <p className="text-sm">
+                  Your prayers can move moutains and change lives. Join our team
+                  of prayer warriors and intercede for our organization, our
+                  staff, and the communities we serve
+                </p>
+
+                <div className="flex items-center gap-4 text-yellowy-900 pt-2">
+                  <p className="text-yellowy-900 font-semibold">
+                    Join our prayer team
+                  </p>
+                  <BsChevronRight size={20} />
+                </div>
+              </div>
+            </Link>
           </div>
         </div>
       </div>

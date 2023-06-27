@@ -1,7 +1,7 @@
 // import { Link } from "react-router-dom";
 // import { BsChevronRight } from "react-icons/bs";
 
-function NewsCard({ img }) {
+function NewsCard({ img, content }) {
   return (
     // <Link to="/blog">
     <div className="max-w-sm bg-white  rounded-lg shadow-lg hover:shadow-md  transform transition duration-500 hover:scale-95 p-6">
@@ -16,10 +16,7 @@ function NewsCard({ img }) {
       <h5 className="mb-2 text-2xl font-bold tracking-tight text-greengray-900">
         Chibok community now has it own translation
       </h5>
-      <p className="mb-3 font-normal text-greengray-900">
-        Support us financially by donating to our cause. Your donation will
-        help us in translating the Bible into more languages.
-      </p>
+      <p className="mb-3 font-normal text-greengray-900">{content}</p>
       {/* <Link
           to="/about"
           className="flex items-center gap-4 text-yellowy-900 pt-2"

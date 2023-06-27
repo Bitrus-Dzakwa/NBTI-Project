@@ -34,19 +34,19 @@ function Banner() {
         <div className="flex gap-5 justify-between items-center md:w-[100%] mt-6 md:mt-8">
           <div className="flex flex-col justify-center items-center">
             <h3 className="text-yellowy-900 font-bold text-lg">7,117</h3>
-            <p className="text-greengray-900 text-xs">
+            <p className="text-greengray-900 text-xs md:text-sm text-center">
               Languages spoken worldwide
             </p>
           </div>
           <div className="flex flex-col justify-center items-center">
             <h3 className="text-yellowy-900 font-bold text-lg">3,386</h3>
-            <p className="text-greengray-900 text-xs">
+            <p className="text-greengray-900 text-xs md:text-sm text-center">
               Languages with at least one book of the Bible translation
             </p>
           </div>
           <div className="flex flex-col justify-center items-center">
             <h3 className="text-yellowy-900 font-bold text-lg">2731</h3>
-            <p className="text-greengray-900 text-xs">
+            <p className="text-greengray-900 text-xs md:text-sm text-center">
               Languages without any Portion of the Bible Translated
             </p>
           </div>

@@ -73,7 +73,7 @@ function DonateForm() {
 
     return (
         <>
-            <h3 className="mt-6 text-sm leading-6 font-semibold">Where Would You Like To Give:</h3>
+            <h3 className="mt-6 text-sm leading-6 font-semibold text-darkishtext-100">Where Would You Like To Give:</h3>
             <section className="grid grid-cols-2 md:grid md:grid-cols-4  gap-4 md:px-0 md:flex-row md:gap-14 justify-evenly">
                 {
 
@@ -94,8 +94,9 @@ function DonateForm() {
                 }
             </section>
 
-            <h3 className="text-sm font-semibold mb-1 mt-5">How Often?</h3>
-            <section className="grid grid-cols-2 md:grid md:grid-cols-4  gap-4 md:px-0 md:flex-row md:gap-14 justify-evenly">
+
+            <h3 className="text-sm font-semibold text-darkishtext-100 mb-1 mt-5">How Often?</h3>
+            <section className="grid grid-cols-2 md:grid md:grid-cols-4 gap-4 md:px-0 md:flex-row md:gap-14 justify-evenly">
                 {
                     DonationFrequencyList.map((freq, index) => (
                         <DonationFrequencyRadioItem key={index}
@@ -107,8 +108,9 @@ function DonateForm() {
                 }
             </section>
 
-            <h3 className="text-sm font-semibold mb-1 mt-5">I Will Like To Give</h3>
-            <section className="grid grid-cols-2 md:grid md:grid-cols-4  gap-4 md:px-0 md:flex-row md:gap-14 justify-evenly">
+
+            <h3 className="text-sm font-semibold text-darkishtext-100 mb-1 mt-5">I Will Like To Give</h3>
+            <section className="grid grid-cols-3 md:grid md:grid-cols-5 gap-4 md:px-0 md:flex-row md:gap-6 justify-evenly">
                 {
                     DonationAmountList.map((amount, index) => (
                         <DonationAmountRadioItem key={index}
@@ -118,28 +120,33 @@ function DonateForm() {
                             OnItemClick={OnDonationAmountSelect} />
                     ))
                 }
-                <div className=" flex flex-row flex-wrap gap-2 rounded-md border-[1px] border-greengray-900 items-center justify-between">
-                    <span className={`w-1/4 bg-greengray-900 rounded-l active:bg-yellowy-900`}>
+                <div className="group min-h-[40px] flex flex-row rounded-md border-[1px] border-greengray-900 focus-within:border-yellowy-900 items-center justify-between">
+                    <span className={`w-1/4 h-full flex justify-center items-center  bg-greengray-100 rounded-l group-focus-within:bg-yellowy-900`}>
                         {currency.symbol}
                     </span>
-                    <input className="w-3/4 my-3 mr-3 bg-greengray-100 text-base font-bold" 
-                    type="number" placeholder="Enter Amount" value={DonationFormState.current.amount}
+                    <input className="peer w-3/4 h-full bg-[#47544345] text-base font-bold text-center border-l-0 outline-0"
+                        type="number" placeholder="Enter Amount" value={DonationFormState.current.amount}
                         onChange={(amount) => OnDonationAmountSelect(DonationAmountList.length - 1, amount)}
                     />
                 </div>
             </section>
 
-            <h3 className="text-sm font-semibold mb-1 mt-5">Pay Via:</h3>
-            <div className={`w-6 h-6 mr-2 rounded-full border-2 border-black bg-yellowy-900`}></div>
-            <img src={StripeLogoPNG} alt="Stripe Logo" />
 
-            <hr className="h-[3px] mt-4 px-14 text-greengray-200"/>
+            <h3 className="text-sm font-semibold text-darkishtext-100 mt-5">Pay Via:</h3>
+            <section className="flex flex-row items-center mt-1">
+                <div className={`w-6 h-6 mr-1 rounded-full border-2 border-greengray-200 bg-yellowy-900`}></div>
+                <img src={StripeLogoPNG} alt="Stripe Logo" />
+            </section>
 
-            <button className="mt-4 mx-auto max-w-sm w-80 py-4 px-4 text-center bg-[#475443] text-white text-xl leading-6"
-            type="submit" value="Donate Now" onClick={OnDonationFormSubmit}>
-            Donate Now
-            <FaChevronRight size={20}/>
-          </button>
+
+            <hr className="h-[6px] mt-4 border-t-2 px-14 text-greengray-200" />
+
+
+            <button className=" flex justify-center items-center mt-4 mx-auto max-w-sm w-80 py-4 px-4 text-center bg-[#475443] text-white text-xl leading-6"
+                type="submit" value="Donate Now" onClick={OnDonationFormSubmit}>
+                Donate Now
+                <FaChevronRight className="inline ml-3" size={20} />
+            </button>
 
         </>
     )
@@ -149,27 +156,29 @@ export default DonateForm;
 
 
 
+
+
 function DonationFrequencyRadioItem({ item_id, radio_group_state, text, OnItemClick }) {
-    console.log("state: ", radio_group_state);
+    console.log("Freq State: ", radio_group_state);
     return (
-        <div className="p-3 flex flex-row flex-wrap gap-2 rounded-md border-[1px] border-greengray-900 items-center justify-evenly"
+        <div className="p-3 flex flex-row flex-wrap gap-2 rounded-md border-greengray-900 items-center"
             onClick={() => OnItemClick(item_id, text)}
         >
-            <div className={` w-6 h-6 rounded-full border-2 border-black ${radio_group_state[item_id] ? "bg-yellowy-900 border-greengray-100" : ""}`}></div>
-            <h3 className="text-base font-bold">{text}</h3>
+            <div className={` w-6 h-6 rounded-full border-2 border-greengray-900 ${radio_group_state[item_id] ? "bg-yellowy-900 border-greengray-100" : ""}`}></div>
+            <h3 className="text-base font-bold text-[#707070]">{text}</h3>
         </div>
     )
 }
 
 
 function DonationAmountRadioItem({ item_id, radio_group_state, amount, OnItemClick }) {
-    console.log("state: ", radio_group_state);
+    console.log("Amount State: ", radio_group_state);
     return (
-        <div className="p-3 flex flex-row flex-wrap gap-2 rounded-md border-[1px] border-greengray-900 items-center justify-evenly"
+        <div className="p-3 flex flex-row flex-wrap gap-2 rounded-md border-[1px] border-greengray-900 items-center justify-start md:justify-evenly"
             onClick={() => OnItemClick(item_id, amount)}
         >
-            <div className={` w-6 h-6 rounded-full border-2 border-black ${radio_group_state[item_id] ? "bg-yellowy-900 border-greengray-100" : ""}`}></div>
-            <h3 className="text-base font-bold">{amount}</h3>
+            <div className={` w-6 h-6 rounded-full border-2 border-greengray-900 ${radio_group_state[item_id] ? "bg-yellowy-900 border-greengray-100" : ""}`}></div>
+            <h3 className="text-base font-bold text-greengray-900">{amount}</h3>
         </div>
     )
 }
@@ -182,7 +191,7 @@ const ServiceCard = function ServiceCard({ id, text, icon_source, onCardClicked 
     const [isCardClicked, setIsCardClicked] = useState(false);
 
     return (
-        <div className="relative flex flex-col justify-center items-center gap-4 pt-5 p-2 border text-center border-greengray-900 rounded-sm bg-white shadow-sm md:mb-0 hover:scale-95"
+        <div className="relative flex flex-col justify-center items-center gap-4 pt-5 p-2 border text-center border-greengray-900 rounded-sm bg-white shadow-sm md:mb-0 hover:scale-95 transition-all"
             onClick={() => {
                 setIsCardClicked(oldState => !oldState);
                 onCardClicked(id, text);

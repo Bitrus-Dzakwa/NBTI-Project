@@ -2,10 +2,10 @@ import NewsCard from "./NewsCard";
 import blogImg1 from "../assets/blogImg1.jpeg";
 import blogImg2 from "../assets/blogImg2.jpeg";
 import blogImg3 from "../assets/blogImg3.png";
-// import banner from "../assets/1.jpg";
 import arrDwn from "../assets/arr-down.png";
-import Button from "./Button";
-import { BsArrowUpRight } from "react-icons/bs";
+// import banner from "../assets/1.jpg";
+// import Button from "./Button";
+// import { BsArrowUpRight } from "react-icons/bs";
 
 function NewsSection() {
   return (
@@ -27,7 +27,7 @@ function NewsSection() {
             Stay informed with our latest development on Bible translation
             project and other community gospel outreach
           </p>
-          <Button title="See All News" icon={<BsArrowUpRight />} />
+          {/* <Button title="See All News" icon={<BsArrowUpRight />} /> */}
         </div>
       </article>
       <div className="grid grid-cols-1 md:grid-cols-3 px-8 md:px-24 gap-10 place-content-center">
@@ -36,16 +36,19 @@ function NewsSection() {
           title="NBTI partners with local community to translate Bible into indigenous language"
           content="NBTI is a Bible Translation agency that guides mother tongues to own its project for self sustenance, self governance and self sponsored for the owners to take pride in owning the project.
 "
+          date="July 01, 2023"
         />
         <NewsCard
           img={blogImg2}
           title="Translation Workshop Completed"
           content=" Every mother tongue that is guided by NBTI will undergo ICTP to open the crude mind and widen the scope of the mother tongue owners by inductive awareness to know what is all about translation and is tied to time to deliver for public consumption"
+          date="June 01, 2023"
         />
         <NewsCard
           img={blogImg3}
           title="Community based team checking event a success"
           content="When properly managed the translation which was to take years can reduce to visible time possible to use the product for the public consumption."
+          date="June 19, 2023"
         />
         {/* <NewsCard img={banner} /> */}
       </div>

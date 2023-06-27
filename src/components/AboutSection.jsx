@@ -1,4 +1,6 @@
 import { BiLowVision } from "react-icons/bi";
+import { RiRefund2Line } from "react-icons/ri";
+import { AiFillSignal } from "react-icons/ai";
 
 function AboutSection() {
   return (
@@ -10,8 +12,8 @@ function AboutSection() {
             <BiLowVision />
           </div>
           <p className="feature__text">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tenetur
-            distinctio necessitatibus pariatur voluptatibus.
+            Our vision is to see God{"'"}s word translated into the languages of
+            all nations to transform lives and unite people.
           </p>
         </div>
         <div className="bg-white rounded-md shadow-md p-5">
@@ -20,8 +22,8 @@ function AboutSection() {
             <BiLowVision />
           </div>
           <p className="feature__text">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tenetur
-            distinctio necessitatibus pariatur voluptatibus.
+            Our mission is to use Scripture to help tribes and nations
+            experience God{"'"}s love and remain united and indivisible.
           </p>
         </div>
         <div className="bg-white rounded-md shadow-md p-5">
@@ -38,12 +40,21 @@ function AboutSection() {
         </div>
         <div className="bg-white rounded-md shadow-md p-5">
           <div className="flex items-center gap-5 text-greengray-900">
-            <h4 className="text-greengray-900 text-2xl font-bold">Core</h4>
-            <BiLowVision />
+            <h4 className="text-greengray-900 text-2xl font-bold">
+              Source of Funds
+            </h4>
+            <RiRefund2Line />
           </div>
           <p className="feature__text">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tenetur
-            distinctio necessitatibus pariatur voluptatibus.
+            Neighborhood Bible Translation Initiative is entirely a faith-based
+            organization. Our resources come from men and women who feel the
+            Spirit of God is urging them to partner with us through:
+            <ul>
+              <li>Donation</li>
+              <li>Sales of Materials</li>
+              <li>Grants, Aids and Gift</li>
+              <li>Fees for training</li>
+            </ul>
           </p>
         </div>
         <div className="bg-white rounded-md shadow-md p-5">
@@ -51,7 +62,7 @@ function AboutSection() {
             <h4 className="text-greengray-900 text-2xl font-bold">
               Our Strategies
             </h4>
-            <BiLowVision />
+            <AiFillSignal />
           </div>
           <p className="feature__text">
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tenetur

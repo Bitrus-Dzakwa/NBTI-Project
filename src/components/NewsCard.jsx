@@ -1,7 +1,7 @@
 // import { Link } from "react-router-dom";
 // import { BsChevronRight } from "react-icons/bs";
 
-function NewsCard({ img, content, title }) {
+function NewsCard({ img, content, title, date }) {
   return (
     // <Link to="/blog">
     <div className="max-w-sm bg-white  rounded-lg shadow-lg hover:shadow-md  transform transition duration-500 hover:scale-95 p-6">
@@ -11,7 +11,7 @@ function NewsCard({ img, content, title }) {
         alt="blog Image"
       />
       <div className="px-3 py-2 text-greengray-900 my-2 bg-[#FFFBF2] max-w-fit">
-        <p>June 01, 2023</p>
+        <p>{date}</p>
       </div>
       <h5 className="mb-2 text-2xl font-bold tracking-tight text-greengray-900">
         {title}

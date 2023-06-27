@@ -19,12 +19,11 @@ function Banner() {
           Translation initiative.
         </h1>
         <p className="text-sm md:text-base text-greengray-900 mt-6 md:mt-8 ">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo
-          lorem vitae urna malesuada hendrerit. Ut in nulla enidolor sit amet,
-          consectetur adipiscing elit.
+          Bringing the word of God to every language. We believe Bible
+          translation is the central to spreading the gospel.
         </p>
         <div className="mt-6 md:mt-8 w-fit">
-          <Link to="/bePart">
+          <Link to="/volunteer">
             <Button
               title="BE A PART OF THIS"
               isBg={true}
@@ -34,16 +33,20 @@ function Banner() {
         </div>
         <div className="flex justify-between items-center md:w-[90%] mt-6 md:mt-8">
           <div className="flex flex-col justify-center items-center">
-            <h3 className="text-yellowy-900 font-bold text-lg">900+</h3>
-            <p className="text-greengray-900">Donors</p>
+            <h3 className="text-yellowy-900 font-bold text-lg">7,117</h3>
+            <p className="text-greengray-900">Languages spoken worldwide</p>
           </div>
           <div className="flex flex-col justify-center items-center">
-            <h3 className="text-yellowy-900 font-bold text-lg">15K</h3>
-            <p className="text-greengray-900">Volunteers</p>
+            <h3 className="text-yellowy-900 font-bold text-lg">3,386</h3>
+            <p className="text-greengray-900">
+              Languages with at least one book of the Bible translation
+            </p>
           </div>
           <div className="flex flex-col justify-center items-center">
-            <h3 className="text-yellowy-900 font-bold text-lg">$10K</h3>
-            <p className="text-greengray-900">Raised</p>
+            <h3 className="text-yellowy-900 font-bold text-lg">2731</h3>
+            <p className="text-greengray-900">
+              Languages without any Portion of the Bible Translated
+            </p>
           </div>
         </div>
       </div>

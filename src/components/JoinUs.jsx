@@ -18,7 +18,7 @@ function JoinUs() {
       />
       <div className="p-8 order-last md:order-1 z-10 md:w-[90%]">
         <h3 className="text-yellowy-900 uppercase font-semibold flex items-center gap-4">
-          join us
+          Get Involved
           <span>
             <img src={arrDwn} alt="arrow" className="w-8 h-8" />
           </span>

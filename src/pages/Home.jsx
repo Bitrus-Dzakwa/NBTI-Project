@@ -12,9 +12,9 @@ function Home() {
   return (
     <div>
       <Banner />
-      <AboutSection />
       <OurWorks />
       <JoinUs />
+      <AboutSection />
       <Testimonial />
       <NewsSection />
       <Footer />

@@ -8,7 +8,7 @@ import { MdDescription } from "react-icons/md";
 
 function AboutSection() {
   return (
-    <div className="my-20">
+    <div className="my-10 md:my-20">
       <div className="py-5 px-8 md:py-10 md:px-15 flex flex-col text-center justify-center items-center">
         <h3 className="text-yellowy-900 uppercase font-semibold flex items-center gap-4">
           About Us
@@ -49,7 +49,7 @@ function AboutSection() {
             <RxValue size={25} />
           </div>
           <p className="text-sm md:text-base">
-            <ul>
+            <ul className="list-disc">
               <li>
                 Scripture is God’s message to every individual, Church and
                 nation.
@@ -58,6 +58,11 @@ function AboutSection() {
                 To work and serve with faithfulness, integrity with sincerity.
               </li>
               <li>Accountability is our watch word as God’s stewards.</li>
+              <li>To maintain God’s standard in a changing world.</li>
+              <li>
+                Evangelization and discipleship using Mother Tongue; the heart
+                language.
+              </li>
             </ul>
           </p>
         </div>
@@ -72,7 +77,7 @@ function AboutSection() {
             Neighborhood Bible Translation Initiative is entirely a faith-based
             organization. Our resources come from men and women who feel the
             Spirit of God is urging them to partner with us through:
-            <ul>
+            <ul className="list-disc">
               <li>Donation</li>
               <li>Sales of Materials</li>
               <li>Grants, Aids and Gift</li>
@@ -88,7 +93,7 @@ function AboutSection() {
             <AiFillSignal size={25} />
           </div>
           <p className="text-sm md:text-base">
-            <ul>
+            <ul className="list-disc">
               <li>Mobilization through Churches and community leaders.</li>
               <li>Produce primers in local languages.</li>
               <li>Conduct Literacy training.</li>
@@ -103,6 +108,9 @@ function AboutSection() {
               <li>
                 Engage language groups in its translated Bible/Scripture use
                 within the neighborhood.
+              </li>
+              <li>
+                We organized and send trained translators to people’s group.
               </li>
             </ul>
           </p>

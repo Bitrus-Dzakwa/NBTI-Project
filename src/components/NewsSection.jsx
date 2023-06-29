@@ -3,13 +3,10 @@ import blogImg1 from "../assets/blogImg1.jpeg";
 import blogImg2 from "../assets/blogImg2.jpeg";
 import blogImg3 from "../assets/blogImg3.png";
 import arrDwn from "../assets/arr-down.png";
-// import banner from "../assets/1.jpg";
-// import Button from "./Button";
-// import { BsArrowUpRight } from "react-icons/bs";
 
 function NewsSection() {
   return (
-    <div className="bg-[#FFFBF2] md:pb-20">
+    <div className="bg-[#FFFBF2] pb-10 md:pb-20">
       <article className="flex flex-col md:flex-row justify-between items-start px-4 md:px-16 pt-12 md:pt-20 pb-4">
         <div>
           <h3 className="text-yellowy-900 uppercase font-semibold flex items-center gap-4">

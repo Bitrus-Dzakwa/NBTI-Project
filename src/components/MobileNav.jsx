@@ -1,7 +1,8 @@
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { IoClose } from "react-icons/io5";
 import Button from "./Button";
 import { HiOutlineChevronRight, HiOutlineUserCircle } from "react-icons/hi";
+import { Link } from "react-scroll";
 
 function MobileNav({ setIsMenuOpen }) {
   const active = "text-stone-300 font-semibold text-xl";
@@ -22,6 +23,9 @@ function MobileNav({ setIsMenuOpen }) {
         <li>
           <NavLink
             to="/"
+            onClick={() => {
+              setIsMenuOpen(false);
+            }}
             className={({ isActive }) => (isActive ? active : notActive)}
           >
             Home
@@ -50,49 +54,61 @@ function MobileNav({ setIsMenuOpen }) {
           </NavLink>
         </li>
         <li>
-          <NavLink
-            to="/getInvolved"
+          <Link
             onClick={() => {
               setIsMenuOpen(false);
             }}
-            className={({ isActive }) => (isActive ? active : notActive)}
+            spy={true}
+            smooth={true}
+            offset={-70}
+            duration={500}
+            to="getInvolved"
+            className="text-white transition-all font-semibold text-xl hover:text-greengray-900"
           >
             Get Involved
-          </NavLink>
+          </Link>
         </li>
         <li>
-          <NavLink
-            to="/news"
+          <Link
             onClick={() => {
               setIsMenuOpen(false);
             }}
-            className={({ isActive }) => (isActive ? active : notActive)}
+            spy={true}
+            smooth={true}
+            offset={-70}
+            duration={500}
+            to="news"
+            className="text-white transition-all font-semibold text-xl hover:text-greengray-900"
           >
             News
-          </NavLink>
+          </Link>
         </li>
         <li>
-          <NavLink
-            to="/contact"
+          <Link
             onClick={() => {
               setIsMenuOpen(false);
             }}
-            className={({ isActive }) => (isActive ? active : notActive)}
+            spy={true}
+            smooth={true}
+            offset={-70}
+            duration={500}
+            to="contact"
+            className="text-white transition-all font-semibold text-xl hover:text-greengray-900"
           >
             Contact
-          </NavLink>
+          </Link>
         </li>
 
         <div className="flex flex-col items-center gap-4">
-          <Link
+          <NavLink
             to="/volunteer"
             onClick={() => {
               setIsMenuOpen(false);
             }}
           >
             <Button title="Volunteer" icon={<HiOutlineUserCircle />} />
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             to="/donate"
             onClick={() => {
               setIsMenuOpen(false);
@@ -103,7 +119,7 @@ function MobileNav({ setIsMenuOpen }) {
               isBg={true}
               icon={<HiOutlineChevronRight />}
             />
-          </Link>
+          </NavLink>
         </div>
       </ul>
     </>

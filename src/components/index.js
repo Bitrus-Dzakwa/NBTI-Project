@@ -5,7 +5,7 @@ export { default as MobileNav } from "./MobileNav";
 export { default as Banner } from "./Banner";
 export { default as OurWorks } from "./OurWorks";
 export { default as AboutSection } from "./AboutSection";
-export { default as JoinUs } from "./JoinUs";
+export { default as GetInvolved } from "./GetInvolved";
 export { default as NewsSection } from "./NewsSection";
 export { default as NewsCard } from "./NewsCard";
 export { default as Testimonial } from "./Testimonial";

@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import Button from "./Button";
-import { Link, animateScroll as scroll } from "react-scroll";
+import { Link } from "react-scroll";
 
 import { HiOutlineChevronRight, HiOutlineUserCircle } from "react-icons/hi";
 
@@ -39,12 +39,16 @@ function NavLinks() {
             </NavLink>
           </li>
           <li>
-            <NavLink
-              to="/getInvolved"
-              className={({ isActive }) => (isActive ? active : notActive)}
+            <Link
+              spy={true}
+              smooth={true}
+              offset={-70}
+              duration={500}
+              to="getInvolved"
+              className="transition-all p-1 text-white font-medium text-sm hover:text-greengray-100 cursor-pointer"
             >
               Get Involved
-            </NavLink>
+            </Link>
           </li>
           <li>
             <Link
@@ -72,16 +76,16 @@ function NavLinks() {
           </li>
         </ul>
         <div className="hidden md:flex gap-8">
-          <Link to="/volunteer">
+          <NavLink to="/volunteer">
             <Button title="Volunteer" icon={<HiOutlineUserCircle />} />
-          </Link>
-          <Link to="/donate">
+          </NavLink>
+          <NavLink to="/donate">
             <Button
               title="Donate Now"
               isBg={true}
               icon={<HiOutlineChevronRight />}
             />
-          </Link>
+          </NavLink>
         </div>
       </div>
     </>

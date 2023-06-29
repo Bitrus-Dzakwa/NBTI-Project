@@ -8,7 +8,7 @@ import bgImg from "../assets/image22.png";
 import arrDwn from "../assets/arr-down.png";
 import bannerImage from "../assets/group3.png";
 
-function JoinUs() {
+function GetInvolved() {
   return (
     <header className="w-full bg-[#FFFBF2] md:grid flex flex-col md:grid-cols-2 relative md:py-20 md:px-16">
       <img
@@ -95,4 +95,4 @@ function JoinUs() {
   );
 }
 
-export default JoinUs;
+export default GetInvolved;

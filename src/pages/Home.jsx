@@ -2,7 +2,7 @@ import {
   OurWorks,
   Banner,
   Footer,
-  JoinUs,
+  GetInvolved,
   NewsSection,
   Testimonial,
   AboutSection,
@@ -13,7 +13,9 @@ function Home() {
     <div>
       <Banner />
       <OurWorks />
-      <JoinUs />
+      <section id="getInvolved">
+        <GetInvolved />
+      </section>
       <AboutSection />
       <Testimonial />
       <section id="news">

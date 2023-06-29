@@ -1,5 +1,6 @@
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import Button from "./Button";
+import { Link, animateScroll as scroll } from "react-scroll";
 
 import { HiOutlineChevronRight, HiOutlineUserCircle } from "react-icons/hi";
 
@@ -7,8 +8,7 @@ function NavLinks() {
   const active =
     "text-greengray-900 p-1 border-b border-greengray-900 font-medium text-sm";
   const notActive =
-    "transition-all p-1 text-white font-medium text-sm hover:text-greengray-100 ";
-  //   const nav__black = "bg-gradient-to-b from-stone-500 to-stone-100";
+    "transition-all p-1 text-white font-medium text-sm hover:text-greengray-100";
 
   return (
     <>
@@ -47,20 +47,28 @@ function NavLinks() {
             </NavLink>
           </li>
           <li>
-            <NavLink
-              to="/news"
-              className={({ isActive }) => (isActive ? active : notActive)}
+            <Link
+              spy={true}
+              smooth={true}
+              offset={-70}
+              duration={500}
+              to="news"
+              className="transition-all p-1 text-white font-medium text-sm hover:text-greengray-100 cursor-pointer"
             >
               News
-            </NavLink>
+            </Link>
           </li>
           <li>
-            <NavLink
-              to="/contact"
-              className={({ isActive }) => (isActive ? active : notActive)}
+            <Link
+              spy={true}
+              smooth={true}
+              offset={-70}
+              duration={500}
+              to="contact"
+              className="transition-all p-1 text-white font-medium text-sm hover:text-greengray-100 cursor-pointer"
             >
               Contact
-            </NavLink>
+            </Link>
           </li>
         </ul>
         <div className="hidden md:flex gap-8">

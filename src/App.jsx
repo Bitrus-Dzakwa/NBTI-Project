@@ -5,7 +5,7 @@ import {
   About,
   Contact,
   Donate,
-  News,
+  // News,
   GetInvolved,
   Volunteer,
   Works,
@@ -22,7 +22,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/donate" element={<Donate />} />
         <Route path="/works" element={<Works />} />
-        <Route path="/news" element={<News />} />
+        {/* <Route path="/news" element={<News />} /> */}
         <Route path="/contact" element={<Contact />} />
         <Route path="/getInvolved" element={<GetInvolved />} />
         <Route path="/volunteer" element={<Volunteer />} />

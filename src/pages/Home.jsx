@@ -16,8 +16,12 @@ function Home() {
       <JoinUs />
       <AboutSection />
       <Testimonial />
-      <NewsSection />
-      <Footer />
+      <section id="news">
+        <NewsSection />
+      </section>
+      <section id="contact">
+        <Footer />
+      </section>
     </div>
   );
 }

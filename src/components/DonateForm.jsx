@@ -4,39 +4,91 @@ import { MdVideoLibrary } from "react-icons/md";
 import { FaBookOpen, FaChevronRight } from "react-icons/fa";
 import { RiTranslate } from "react-icons/ri";
 import { IoLanguage } from "react-icons/io5";
-import StripeLogoPNG from "../assets/stripe.png";
 
-// https://stripe.com/docs/currencies#presentment-currencies
-const stripe_supported_currencies = ["USD", "AED", "AFN*", "ALL", "AMD", "ANG", "AOA*", "ARS*", "AUD", "AWG", "AZN", "BAM", "BBD", "BDT", "BGN", "BIF", "BMD", "BND", "BOB*", "BRL*", "BSD", "BWP", "BYN", "BZD", "CAD", "CDF", "CHF", "CLP*", "CNY", "COP*", "CRC*", "CVE*", "CZK", "DJF*", "DKK", "DOP", "DZD", "EGP", "ETB", "EUR", "FJD", "FKP*", "GBP", "GEL", "GIP", "GMD", "GNF*", "GTQ*", "GYD", "HKD", "HNL*", "HTG", "HUF", "IDR", "ILS", "INR", "ISK", "JMD", "JPY", "KES", "KGS", "KHR", "KMF", "KRW", "KYD", "KZT", "LAK*", "LBP", "LKR", "LRD", "LSL", "MAD", "MDL", "MGA", "MKD", "MMK", "MNT", "MOP", "MRO", "MUR*", "MVR", "MWK", "MXN", "MYR", "MZN", "NAD", "NGN", "NIO*", "NOK", "NPR", "NZD", "PAB*", "PEN*", "PGK", "PHP", "PKR", "PLN", "PYG*", "QAR", "RON", "RSD", "RUB", "RWF", "SAR", "SBD", "SCR", "SEK", "SGD", "SHP*", "SLE", "SOS", "SRD*", "STD*", "SZL", "THB", "TJS", "TOP", "TRY", "TTD", "TWD", "TZS", "UAH", "UGX", "UYU*", "UZS", "VND", "VUV", "WST", "XAF", "XCD", "XOF*", "XPF*", "YER", "ZAR", "ZMW"];
+import StripeLogoPNG from "../assets/stripe.png";
+// import DropDownArrowPNG from "../assets/arrow-down.png";
+
 
 const ServiceDetails = [
     {
-        text: "Audio and Video Production", icon_source: MdVideoLibrary
+        text: "Audio and Video <br/> Production", icon_source: MdVideoLibrary
     }, {
-        text: "Language Research", icon_source: IoLanguage
+        text: "Language <br/> Research", icon_source: IoLanguage
     }, {
-        text: "Publication Services", icon_source: FaBookOpen``
+        text: "Publication <br/> Services", icon_source: FaBookOpen``
     }, {
-        text: "Translation Services", icon_source: RiTranslate
+        text: "Translation <br/> Services", icon_source: RiTranslate
     }
 ];
 
-const DonationFrequencyList = ["ONE TIME", "MONTHLY", "QUARTERLY", "ANNUALLY"];
-const DonationAmountList = [1, 5, 10, 20, 50, 100, 200, 500, 1000]
-const initialFormState = {
-    amount: 1
+const DonationScheduleList =
+    [
+        {
+            repr: "ONE TIME",
+            interval: "",
+            freq: 0
+        },
+        {
+            repr: "MONTHLY",
+            interval: "month",
+            freq: 1
+        },
+        {
+            repr: "QUARTERLY",
+            interval: "month",
+            freq: 4
+        },
+        {
+            repr: "ANNUALLY",
+            interval: "year",
+            freq: 1
+        }
+    ];
+
+
+const Currency__To__DonationAmount__Map = {
+    "NGN": [1000, 5000, 20000, 50000, 100000, 200000, 500000, 1000000],
+    "USD": [1, 5, 10, 20, 50, 100, 200, 500],
+    "EUR": [1, 5, 10, 20, 50, 100, 200, 500],
+    "GBP": [1, 5, 10, 20, 50, 100, 200, 500],
+    "CND": [1, 5, 10, 20, 50, 100, 200, 500],
 }
+
+const SupportedCurrencies = ["NGN", "USD", "EUR", "GBP", "CND"];
+
+
+const initialFormState = {
+    amount: 100000, // Stripe enforces a $0.5 minimum transaction amount, (amount in cents).
+    currency: {
+        repr: "EUR",
+        symbol: "EUR"
+    },
+    subscription: {
+        repr: "",
+        interval: "",
+        freq: 1
+    }
+}
+// interface IGuestUserDonationInfo {
+//   sponsored_services: string,
+//   details: string,
+//   currency: string,
+//   amount: number,
+//   is_reccuring_donation: boolean,
+//   subscription: {
+//     interval: "day" | "week" | "month" | "year",
+//     freq: number
+//   } | null,
+
+// }
 
 function DonateForm() {
     const DonationFormState = useRef(initialFormState);
 
     const [selectedServices, setSelectedServices] = useState(Array(ServiceDetails.length));
-    const [donationFrequency, setDonationFrequency] = useState(Array(DonationFrequencyList.length).fill(false));
-    const [donationAmount, setDonationAmount] = useState(Array(DonationAmountList.length).fill(false));
-    const [currency, setCurrency] = useState({
-        repr: "USD",
-        symbol: "$"
-    });
+    const [donationSchedule, setDonationSchedule] = useState(Array(DonationScheduleList.length).fill(false));
+    const [donationAmount, setDonationAmount] = useState(Array(Currency__To__DonationAmount__Map["NGN"].length + 1).fill(false));
+    const [currency, setCurrency] = useState(initialFormState.currency);
 
 
     const OnServiceCardClicked = useCallback((card_id, text) => {
@@ -54,21 +106,51 @@ function DonateForm() {
     }, [selectedServices, setSelectedServices]);
 
 
-    const OnDonationFrequencyItemClick = useCallback((item_id, text) => {
-        donationFrequency.fill(false);
-        donationFrequency[item_id] = true;
-        setDonationFrequency(() => [...donationFrequency]);
-        // console.log(donationFrequency);
-    }, [donationFrequency, setDonationFrequency])
+
+    const OnDonationFrequencyItemClick = useCallback((item_id, schedule) => {
+        donationSchedule.fill(false);
+        donationSchedule[item_id] = true;
+        setDonationSchedule(() => [...donationSchedule]);
+        DonationFormState.current.subscription = schedule;
+        console.log("Form State [Freq]: ", DonationFormState);
+    }, [donationSchedule, setDonationSchedule, DonationFormState]);
+
 
 
     const OnDonationAmountSelect = useCallback((item_id, amount) => {
+        donationAmount.fill(false);
+        if (item_id < donationAmount.length - 1) donationAmount[item_id] = true;
+        setDonationAmount(() => [...donationAmount]);
+        DonationFormState.current.amount = amount;
+        console.log("Form State [Amount]: ", DonationFormState);
+    }, [donationAmount, setDonationAmount, DonationFormState]);
 
-    });
+
+
+    const OnCustomDonationAmountChange = useCallback((event) => {
+        const text = event.target.value.trim();
+        console.log("EvenT:", text, "<>", currency);
+        if (!text.match("^[0-9,]+$")) {
+            event.target.value = PriceFormat(DonationFormState.current.amount / 100, currency.symbol).match("[0-9,]+$")[0];
+            return;
+        }
+        // console.log("PASSTHROUGH: ", text);
+        const new_amount = parseInt(text.replaceAll(",", ""));
+        const display_price = PriceFormat(new_amount, currency.symbol).match("[0-9,]+$")[0];
+        DonationFormState.current.amount = new_amount * 100;
+        event.target.value = display_price;
+        console.log("display_price: ", display_price);
+    }, [DonationFormState, currency])
+
 
 
     function OnDonationFormSubmit() {
         console.log("SUBMITTING FORM =================");
+
+        for (const service of selectedServices) {
+            console.log("Service: ", service);
+        }
+
     }
 
     return (
@@ -94,39 +176,62 @@ function DonateForm() {
                 }
             </section>
 
+            <section className="mt-5 flex flex-col md:flex-row gap-x-16">
 
-            <h3 className="text-sm font-semibold text-darkishtext-100 mb-1 mt-5">How Often?</h3>
-            <section className="grid grid-cols-2 md:grid md:grid-cols-4 gap-4 md:px-0 md:flex-row md:gap-14 justify-evenly">
-                {
-                    DonationFrequencyList.map((freq, index) => (
-                        <DonationFrequencyRadioItem key={index}
-                            item_id={index}
-                            text={freq}
-                            radio_group_state={donationFrequency}
-                            OnItemClick={OnDonationFrequencyItemClick} />
-                    ))
-                }
+                <section className="mt-5 md:mt-0 flex flex-col gap-y-1 md:order-none order-2">
+                    <label className="text-sm leading-[22px] font-semibold text-darkishtext-100" htmlFor="currency">Choose Currency:</label>
+                    <select className="appearance-none p-[10px] border-[1px] rounded-md border-greengray-500 bg-dropdown_chevron bg-no-repeat bg-right text-greengray-900 text-sm leading-normal font-semibold"
+                        name="currency" id="currency" defaultValue={SupportedCurrencies[0]}
+                        onChange={(event) => setCurrency({ repr: event.target.value, symbol: event.target.value })}
+                    >
+                        {
+                            SupportedCurrencies.map((currency, index) => <option key={index} value={currency}>{currency}</option>)
+                        }
+                    </select>
+
+                </section>
+
+                <section className="flex flex-col">
+                    <label className="text-sm leading-[22px] font-semibold text-darkishtext-100" htmlFor="frequency">How Often:</label>
+                    <section id="frequency" className="grid grid-cols-2 md:grid md:grid-cols-4 gap-x-4 gap-y-0 md:px-0 md:flex-row md:gap-8 justify-evenly">
+                        {
+                            DonationScheduleList.map((schedule, index) => (
+                                <DonationFrequencyRadioItem key={index}
+                                    item_id={index}
+                                    schedule={schedule}
+                                    is_selected={donationSchedule[index]}
+                                    OnItemClick={OnDonationFrequencyItemClick} />
+                            ))
+                        }
+                    </section>
+                </section>
+
             </section>
 
 
             <h3 className="text-sm font-semibold text-darkishtext-100 mb-1 mt-5">I Will Like To Give</h3>
-            <section className="grid grid-cols-3 md:grid md:grid-cols-5 gap-4 md:px-0 md:flex-row md:gap-6 justify-evenly">
+            <section className="grid grid-cols-2 md:grid md:grid-cols-4 gap-4 md:px-0 md:flex-row md:gap-6 justify-evenly">
                 {
-                    DonationAmountList.map((amount, index) => (
+                    Currency__To__DonationAmount__Map[currency.repr].map((amount, index) => (
                         <DonationAmountRadioItem key={index}
                             item_id={index}
                             amount={amount}
-                            radio_group_state={donationAmount}
+                            currency={currency.symbol}
+                            is_selected={donationAmount[index]}
                             OnItemClick={OnDonationAmountSelect} />
                     ))
                 }
                 <div className="group min-h-[40px] flex flex-row rounded-md border-[1px] border-greengray-900 focus-within:border-yellowy-900 items-center justify-between">
-                    <span className={`w-1/4 h-full flex justify-center items-center  bg-greengray-100 rounded-l group-focus-within:bg-yellowy-900`}>
+                    <span className={`w-1/4 h-full flex justify-center items-center text-base font-bold text-greengray-900 bg-greengray-200 rounded-l group-focus-within:bg-yellowy-900`}>
                         {currency.symbol}
                     </span>
-                    <input className="peer w-3/4 h-full bg-[#47544345] text-base font-bold text-center border-l-0 outline-0"
-                        type="number" placeholder="Enter Amount" value={DonationFormState.current.amount}
-                        onChange={(amount) => OnDonationAmountSelect(DonationAmountList.length - 1, amount)}
+                    <input className="peer w-3/4 h-full bg-[#70707021] text-[#232723] text-base font-bold text-center border-l-0 outline-0 placeholder:text-xs"
+                        type="text" placeholder="Enter Amount"
+                        onChange={OnCustomDonationAmountChange}
+                        onFocus={() => {
+                            donationAmount.fill(false);
+                            setDonationAmount(() => [...donationAmount]);
+                        }}
                     />
                 </div>
             </section>
@@ -142,7 +247,7 @@ function DonateForm() {
             <hr className="h-[6px] mt-4 border-t-2 px-14 text-greengray-200" />
 
 
-            <button className=" flex justify-center items-center mt-4 mx-auto max-w-sm w-80 py-4 px-4 text-center bg-[#475443] text-white text-xl leading-6"
+            <button className=" flex justify-center items-center mt-4 mb-14 mx-auto max-w-sm w-80 py-4 px-4 text-center bg-[#475443] text-white text-xl leading-6"
                 type="submit" value="Donate Now" onClick={OnDonationFormSubmit}>
                 Donate Now
                 <FaChevronRight className="inline ml-3" size={20} />
@@ -158,40 +263,48 @@ export default DonateForm;
 
 
 
-function DonationFrequencyRadioItem({ item_id, radio_group_state, text, OnItemClick }) {
-    console.log("Freq State: ", radio_group_state);
+// const CURRENCY_AMOUNT_REGEX = RegExp(`^[0-9,]+$`);
+const PriceFormat = (amount, currency) => (new Intl.NumberFormat(undefined, {
+    style: "currency",
+    currency: currency,
+    maximumFractionDigits: 0,
+})).format(amount);
+
+
+function DonationFrequencyRadioItem({ item_id, is_selected, schedule, OnItemClick }) {
+    // console.log("Freq State: ", is_selected);
     return (
-        <div className="p-3 flex flex-row flex-wrap gap-2 rounded-md border-greengray-900 items-center"
-            onClick={() => OnItemClick(item_id, text)}
+        <div className="p-3 flex flex-row flex-wrap gap-2 rounded-md border-greengray-900 items-center cursor-pointer"
+            onClick={() => OnItemClick(item_id, schedule)}
         >
-            <div className={` w-6 h-6 rounded-full border-2 border-greengray-900 ${radio_group_state[item_id] ? "bg-yellowy-900 border-greengray-100" : ""}`}></div>
-            <h3 className="text-base font-bold text-[#707070]">{text}</h3>
+            <div className={` w-5 h-5 rounded-full border-2 border-greengray-900 ${is_selected ? "bg-yellowy-900 border-greengray-100" : ""}`}></div>
+            <h3 className="text-sm leading-normal font-bold text-[#707070]">{schedule.repr}</h3>
         </div>
     )
 }
 
 
-function DonationAmountRadioItem({ item_id, radio_group_state, amount, OnItemClick }) {
-    console.log("Amount State: ", radio_group_state);
+function DonationAmountRadioItem({ item_id, is_selected, amount, currency, OnItemClick }) {
+    // console.log("Amount State: ", is_selected);
     return (
-        <div className="p-3 flex flex-row flex-wrap gap-2 rounded-md border-[1px] border-greengray-900 items-center justify-start md:justify-evenly"
+        <div className="p-2 md:p-3 flex flex-row flex-wrap gap-2 rounded-md border-[1px] border-greengray-900 items-center justify-start md:justify-between cursor-pointer"
             onClick={() => OnItemClick(item_id, amount)}
         >
-            <div className={` w-6 h-6 rounded-full border-2 border-greengray-900 ${radio_group_state[item_id] ? "bg-yellowy-900 border-greengray-100" : ""}`}></div>
-            <h3 className="text-base font-bold text-greengray-900">{amount}</h3>
+            <div className={` hidden md:inline-block w-5 h-5 rounded-full border-2 border-greengray-900 ${is_selected ? "bg-yellowy-900 border-greengray-100" : ""}`}></div>
+            <h3 className="text-base font-bold text-greengray-900">{PriceFormat(amount, currency)}</h3>
         </div>
     )
 }
 
 
-const ServiceCard = function ServiceCard({ id, text, icon_source, onCardClicked }) {
+function ServiceCard({ id, text, icon_source, onCardClicked }) {
 
     // console.log("Type: ", typeof icon_source, icon_source);
 
     const [isCardClicked, setIsCardClicked] = useState(false);
 
     return (
-        <div className="relative flex flex-col justify-center items-center gap-4 pt-5 p-2 border text-center border-greengray-900 rounded-sm bg-white shadow-sm md:mb-0 hover:scale-95 transition-all"
+        <div className="relative flex flex-col justify-center items-center gap-4 pt-5 p-2 border text-center border-greengray-900 rounded-sm bg-white shadow-sm md:mb-0 cursor-pointer hover:scale-95 transition-all"
             onClick={() => {
                 setIsCardClicked(oldState => !oldState);
                 onCardClicked(id, text);
@@ -204,8 +317,7 @@ const ServiceCard = function ServiceCard({ id, text, icon_source, onCardClicked 
                     <img width={30} height={30} className="object-contain" src={icon_source} alt="service icon" />
             }
 
-            <p className="font-medium md:font-semibold text-greengray-900">
-                {text}
+            <p className="font-medium md:font-semibold text-greengray-900" dangerouslySetInnerHTML={text}>
             </p>
         </div>
     )

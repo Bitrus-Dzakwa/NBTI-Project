@@ -60,8 +60,8 @@ const SupportedCurrencies = ["NGN", "USD", "EUR", "GBP", "CND"];
 const initialFormState = {
     amount: 100000, // Stripe enforces a $0.5 minimum transaction amount, (amount in cents).
     currency: {
-        repr: "EUR",
-        symbol: "EUR"
+        repr: "NGN",
+        symbol: "NGN"
     },
     subscription: {
         repr: "",

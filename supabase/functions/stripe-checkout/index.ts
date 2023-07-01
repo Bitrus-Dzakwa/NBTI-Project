@@ -3,8 +3,8 @@
 // This enables autocomplete, go to definition, etc.
 
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
-import { createClient } from "supabase";
 import Stripe from 'stripe';
+import { corsHeaders } from "../_shared/cors.ts";
 
 
 
@@ -12,14 +12,7 @@ import Stripe from 'stripe';
 console.log("Hello from Functions!");
 console.log("CHECKOUT: ", Deno.env.get('STRIPE_CHECKOUT_SECRET_KEY'));
 
-// Create a single supabase client for interacting with your database
-const supabase = createClient(Deno.env.get('SUPABASE_URL'), Deno.env.get('SUPABASE_ANON_KEY'), {
-  global: {
-    headers: {
-      'x-nbti-func-key': Deno.env.get('CHECKOUT_TABLE_AUTH_KEY') || "",
-    }
-  }
-});
+
 
 const stripe = new Stripe(Deno.env.get('STRIPE_CHECKOUT_SECRET_KEY'), {
   apiVersion: '2022-11-15',
@@ -38,9 +31,12 @@ serve(async (req: Request) => {
   //   sponsored_services: "Bible Translation",
   //   subscription: null
   // }
+  if (req.method === 'OPTIONS') {
+    return new Response('ok', { headers: corsHeaders })
+  }
 
   const { stripe_payload, name } = await req.json();
-  console.log("Name:", name,"\nREQ: ", stripe_payload);
+  console.log("Name:", name, "\nREQ: ", stripe_payload);
 
   if (Object.keys(stripe_payload).length === 0) return; // end early if no payload sent
 
@@ -54,7 +50,7 @@ serve(async (req: Request) => {
 
   return new Response(
     JSON.stringify(data),
-    { headers: { "Content-Type": "application/json" } },
+    { headers: { ...corsHeaders, "Content-Type": "application/json" }, status: 200 },
   )
 })
 

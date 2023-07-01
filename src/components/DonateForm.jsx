@@ -317,7 +317,7 @@ function ServiceCard({ id, text, icon_source, onCardClicked }) {
                     <img width={30} height={30} className="object-contain" src={icon_source} alt="service icon" />
             }
 
-            <p className="font-medium md:font-semibold text-greengray-900" dangerouslySetInnerHTML={text}>
+            <p className="font-medium md:font-semibold text-greengray-900" dangerouslySetInnerHTML={{__html: text}}>
             </p>
         </div>
     )

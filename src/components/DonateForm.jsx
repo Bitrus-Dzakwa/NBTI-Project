@@ -1,4 +1,6 @@
+
 import { useCallback, useRef, useState } from "react"
+import { SupabaseFunctions } from "../db/supabase";
 
 import { MdVideoLibrary } from "react-icons/md";
 import { FaBookOpen, FaChevronRight } from "react-icons/fa";
@@ -121,7 +123,7 @@ function DonateForm() {
         donationAmount.fill(false);
         if (item_id < donationAmount.length - 1) donationAmount[item_id] = true;
         setDonationAmount(() => [...donationAmount]);
-        DonationFormState.current.amount = amount;
+        DonationFormState.current.amount = amount * 100;
         console.log("Form State [Amount]: ", DonationFormState);
     }, [donationAmount, setDonationAmount, DonationFormState]);
 
@@ -144,13 +146,53 @@ function DonateForm() {
 
 
 
-    function OnDonationFormSubmit() {
+    async function OnDonationFormSubmit() {
+        // const Guest_User_Donation_Info = {};
         console.log("SUBMITTING FORM =================");
+        // interface IGuestUserDonationInfo {
+        //   sponsored_services: string,
+        //   details: string,
+        //   currency: string,
+        //   amount: number,
+        //   is_reccuring_donation: boolean,
+        //   subscription: {
+        //     interval: "day" | "week" | "month" | "year",
+        //     freq: number
+        //   } | null,
+
+        // }
+        let sponsored_services = "Donation towards "
+        let details = "A detailed list of donation items";
 
         for (const service of selectedServices) {
+            if (service === undefined) continue;
             console.log("Service: ", service);
+            sponsored_services += service + ", ";
         }
 
+        console.log({
+            ...DonationFormState.current,
+            currency: DonationFormState.current.currency.symbol,
+            sponsored_services: sponsored_services.replaceAll("<br/>", ""),
+            details: details,
+            is_reccuring_donation: DonationFormState.current.subscription.interval === "" ? false : true
+        });
+        // return; 
+        const { error, data } = await Create__StripeCheckout({
+            ...DonationFormState.current,
+            currency: DonationFormState.current.currency.symbol,
+            sponsored_services: sponsored_services.replaceAll("<br/>", ""),
+            details: details,
+            is_reccuring_donation: DonationFormState.current.subscription.interval === "" ? false : true
+        });
+
+        if (data) {
+            console.log("Function - Call - Data: ", data);
+            window.location = data.message;
+        }
+        else {
+            console.log("Function - Call - Error: ", error);
+        }
     }
 
     return (
@@ -263,6 +305,34 @@ export default DonateForm;
 
 
 
+
+async function Create__StripeCheckout(checkout_payload) {
+
+    console.log("Create_Stripe_Checkout Called =================== ");
+
+    return await SupabaseFunctions.invoke('stripe-checkout', {
+        body: {
+            name: 'donate_form_call',
+            stripe_payload: checkout_payload
+            // stripe_payload: {
+            //     ...checkout_payload,
+
+            //     // client_ref: 987654321,
+            //     // amount: checkout_payload.amount,
+            //     // currency: checkout_payload.currency.symbol,
+            //     // details: checkout_payload.detai "Bible Translation from English to Yoruba",
+            //     // is_reccuring_donation: false,
+            //     // sponsored_services: "Bible Translation",
+            //     // subscription: null
+            // }
+        },
+    });
+
+}
+
+
+
+
 // const CURRENCY_AMOUNT_REGEX = RegExp(`^[0-9,]+$`);
 const PriceFormat = (amount, currency) => (new Intl.NumberFormat(undefined, {
     style: "currency",
@@ -317,7 +387,7 @@ function ServiceCard({ id, text, icon_source, onCardClicked }) {
                     <img width={30} height={30} className="object-contain" src={icon_source} alt="service icon" />
             }
 
-            <p className="font-medium md:font-semibold text-greengray-900" dangerouslySetInnerHTML={{__html: text}}>
+            <p className="font-medium md:font-semibold text-greengray-900" dangerouslySetInnerHTML={{ __html: text }}>
             </p>
         </div>
     )

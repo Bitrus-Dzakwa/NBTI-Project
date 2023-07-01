@@ -39,15 +39,15 @@ serve(async (req: Request) => {
   //   subscription: null
   // }
 
-  const { stripe_payload } = await req.json();
-  console.log("REQ: ", stripe_payload);  
+  const { stripe_payload, name } = await req.json();
+  console.log("Name:", name,"\nREQ: ", stripe_payload);
 
   if (Object.keys(stripe_payload).length === 0) return; // end early if no payload sent
-  
-  const chekout_url = await Create__StripeCheckoutSession(stripe_payload, stripe_payload.is_one_time_donation)
-  
+
+  const checkout_url = await Create__StripeCheckoutSession(stripe_payload, stripe_payload.is_reccuring_donation);
+
   const data = {
-    message: chekout_url
+    message: checkout_url
   }
 
   console.log(data);
@@ -66,7 +66,7 @@ interface IGuestUserDonationInfo {
   amount: number,
   is_reccuring_donation: boolean,
   subscription: {
-    interval: "day" | "week" | "month" | "year",
+    interval: "day" | "week" | "month" | "year" | "",
     freq: number
   } | null,
 
@@ -81,7 +81,7 @@ async function Create__StripeCheckoutSession(donation_info: IGuestUserDonationIn
       mode: "subscription",
       line_items: [
         {
-          quantity:1,
+          quantity: 1,
           price_data: {
             unit_amount: donation_info.amount,
             product_data: {
@@ -106,7 +106,7 @@ async function Create__StripeCheckoutSession(donation_info: IGuestUserDonationIn
       mode: "payment",
       line_items: [
         {
-          quantity:1,
+          quantity: 1,
           price_data: {
             unit_amount: donation_info.amount,
             product_data: {
@@ -121,7 +121,7 @@ async function Create__StripeCheckoutSession(donation_info: IGuestUserDonationIn
     }
   }
 
-  const sessionObject = await stripe.checkout.sessions.create(checkout_payload, {timeout: 5000});
+  const sessionObject = await stripe.checkout.sessions.create(checkout_payload, { timeout: 5000 });
   return sessionObject.url || sessionObject.id
 
 }

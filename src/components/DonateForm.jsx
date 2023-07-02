@@ -379,7 +379,7 @@ function ServiceCard({ id, text, icon_source, onCardClicked }) {
     const [isCardClicked, setIsCardClicked] = useState(false);
 
     return (
-        <div className="relative flex flex-col justify-center items-center gap-4 pt-5 p-2 border text-center border-greengray-900 rounded-sm bg-white shadow-sm md:mb-0 cursor-pointer hover:scale-95 transition-all"
+        <div className="relative flex flex-col justify-center items-center gap-5 pt-5 p-2 border text-center border-greengray-900 rounded-sm bg-white shadow-sm md:mb-0 cursor-pointer hover:scale-95 transition-all"
             onClick={() => {
                 setIsCardClicked(oldState => !oldState);
                 onCardClicked(id, text);

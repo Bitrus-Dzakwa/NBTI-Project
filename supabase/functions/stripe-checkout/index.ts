@@ -23,14 +23,6 @@ const stripe = new Stripe(Deno.env.get('STRIPE_CHECKOUT_SECRET_KEY'), {
 
 serve(async (req: Request) => {
 
-  // const stripe_payload: IGuestUserDonationInfo = {
-  //   amount: 20,
-  //   currency: "usd",
-  //   details: "Bible Translation from English to Swahili",
-  //   is_reccuring_donation: false,
-  //   sponsored_services: "Bible Translation",
-  //   subscription: null
-  // }
   if (req.method === 'OPTIONS') {
     return new Response('ok', { headers: corsHeaders })
   }

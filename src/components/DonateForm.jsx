@@ -180,7 +180,7 @@ function DonateForm() {
         // return; 
         const { error, data } = await Create__StripeCheckout({
             ...DonationFormState.current,
-            currency: DonationFormState.current.currency.symbol,
+            currency: currency.symbol,
             sponsored_services: sponsored_services.replaceAll("<br/>", ""),
             details: details,
             is_reccuring_donation: DonationFormState.current.subscription.interval === "" ? false : true
@@ -223,8 +223,13 @@ function DonateForm() {
                 <section className="mt-5 md:mt-0 flex flex-col gap-y-1 md:order-none order-2">
                     <label className="text-sm leading-[22px] font-semibold text-darkishtext-100" htmlFor="currency">Choose Currency:</label>
                     <select className="appearance-none p-[10px] border-[1px] rounded-md border-greengray-500 bg-dropdown_chevron bg-no-repeat bg-right text-greengray-900 text-sm leading-normal font-semibold"
-                        name="currency" id="currency" defaultValue={SupportedCurrencies[0]}
-                        onChange={(event) => setCurrency({ repr: event.target.value, symbol: event.target.value })}
+                        name="currency" id="currency" defaultValue={currency.symbol}
+                        onChange={(event) => {
+                            const new_currency = { repr: event.target.value, symbol: event.target.value };
+                            setCurrency(() => (new_currency));
+                            DonationFormState.current.currency = new_currency;
+                            console.log("NEW-CURRENCY: ", new_currency, DonationFormState.current);
+                        }}
                     >
                         {
                             SupportedCurrencies.map((currency, index) => <option key={index} value={currency}>{currency}</option>)

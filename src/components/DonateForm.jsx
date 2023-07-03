@@ -13,14 +13,14 @@ import StripeLogoPNG from "../assets/stripe.png";
 
 const ServiceDetails = [
     {
-        text: "Audio and Video <br/> Production", icon_source: MdVideoLibrary
+        text: "Language Research", icon_source: "images/language-img.svg"
     }, {
-        text: "Language <br/> Research", icon_source: IoLanguage
+        text: "Publication Services", icon_source: "images/publication-img.svg"
     }, {
-        text: "Publication <br/> Services", icon_source: FaBookOpen``
+        text: "Translation Services", icon_source: "images/translate-img.svg"
     }, {
-        text: "Translation <br/> Services", icon_source: RiTranslate
-    }
+        text: "Audio and Video Production", icon_source: "images/audio-video-img.svg"
+    },
 ];
 
 const DonationScheduleList =
@@ -71,18 +71,7 @@ const initialFormState = {
         freq: 1
     }
 }
-// interface IGuestUserDonationInfo {
-//   sponsored_services: string,
-//   details: string,
-//   currency: string,
-//   amount: number,
-//   is_reccuring_donation: boolean,
-//   subscription: {
-//     interval: "day" | "week" | "month" | "year",
-//     freq: number
-//   } | null,
 
-// }
 
 function DonateForm() {
     const DonationFormState = useRef(initialFormState);
@@ -173,7 +162,7 @@ function DonateForm() {
         console.log({
             ...DonationFormState.current,
             currency: DonationFormState.current.currency.symbol,
-            sponsored_services: sponsored_services.replaceAll("<br/>", ""),
+            sponsored_services: sponsored_services,
             details: details,
             is_reccuring_donation: DonationFormState.current.subscription.interval === "" ? false : true
         });
@@ -181,7 +170,7 @@ function DonateForm() {
         const { error, data } = await Create__StripeCheckout({
             ...DonationFormState.current,
             currency: currency.symbol,
-            sponsored_services: sponsored_services.replaceAll("<br/>", ""),
+            sponsored_services: sponsored_services,
             details: details,
             is_reccuring_donation: DonationFormState.current.subscription.interval === "" ? false : true
         });
@@ -198,31 +187,22 @@ function DonateForm() {
     return (
         <>
             <h3 className="mt-6 text-sm leading-6 font-semibold text-darkishtext-100">Where Would You Like To Give:</h3>
-            <section className="grid grid-cols-2 md:grid md:grid-cols-4  gap-4 md:px-0 md:flex-row md:gap-14 justify-evenly">
+            <section className="grid grid-cols-2 md:grid md:grid-cols-4 gap-4 md:px-0 md:flex-row md:gap-14 justify-evenly">
                 {
 
-                    ServiceDetails.map((service, index) => {
-                        let serviceCard;
-                        typeof service.icon_source === "function" ?
-                            serviceCard = <ServiceCard
-                                key={index} id={index} text={service.text} icon_source={<service.icon_source size={30} />} onCardClicked={OnServiceCardClicked}
-                            />
-                            :
-                            serviceCard = <ServiceCard
-                                key={index} id={index} text={service.text} icon_source={service.icon_source} onCardClicked={OnServiceCardClicked}
-                            />
-
-                        return serviceCard;
-                    }
+                    ServiceDetails.map((service, index) =>
+                        <ServiceCard
+                            key={index} id={index} text={service.text} icon_source={service.icon_source} onCardClicked={OnServiceCardClicked}
+                        />
                     )
                 }
             </section>
 
-            <section className="mt-5 flex flex-col md:flex-row gap-x-16">
+            <section className="mt-5 flex flex-col md:flex-row gap-x-14">
 
                 <section className="mt-5 md:mt-0 flex flex-col gap-y-1 md:order-none order-2">
                     <label className="text-sm leading-[22px] font-semibold text-darkishtext-100" htmlFor="currency">Choose Currency:</label>
-                    <select className="appearance-none p-[10px] border-[1px] rounded-md border-greengray-500 bg-dropdown_chevron bg-no-repeat bg-right text-greengray-900 text-sm leading-normal font-semibold"
+                    <select className="appearance-none md:mr-6 p-[10px] border-[1px] rounded-md border-greengray-500 bg-dropdown_chevron bg-no-repeat bg-right text-greengray-900 text-sm leading-normal font-semibold"
                         name="currency" id="currency" defaultValue={currency.symbol}
                         onChange={(event) => {
                             const new_currency = { repr: event.target.value, symbol: event.target.value };
@@ -240,7 +220,7 @@ function DonateForm() {
 
                 <section className="flex flex-col">
                     <label className="text-sm leading-[22px] font-semibold text-darkishtext-100" htmlFor="frequency">How Often:</label>
-                    <section id="frequency" className="grid grid-cols-2 md:grid md:grid-cols-4 gap-x-4 gap-y-0 md:px-0 md:flex-row md:gap-8 justify-evenly">
+                    <section id="frequency" className="grid grid-cols-2 md:grid md:grid-cols-4 max-[350px]:gap-x-0 gap-x-4 gap-y-0 md:gap-x-3 md:px-0 md:flex-row  justify-evenly">
                         {
                             DonationScheduleList.map((schedule, index) => (
                                 <DonationFrequencyRadioItem key={index}
@@ -257,7 +237,7 @@ function DonateForm() {
 
 
             <h3 className="text-sm font-semibold text-darkishtext-100 mb-1 mt-5">I Will Like To Give</h3>
-            <section className="grid grid-cols-2 md:grid md:grid-cols-4 gap-4 md:px-0 md:flex-row md:gap-6 justify-evenly">
+            <section className="grid grid-cols-2 md:grid md:grid-cols-4 grid-flow-row gap-4 md:px-0 md:flex-row md:gap-6 justify-evenly">
                 {
                     Currency__To__DonationAmount__Map[currency.repr].map((amount, index) => (
                         <DonationAmountRadioItem key={index}
@@ -294,7 +274,7 @@ function DonateForm() {
             <hr className="h-[6px] mt-4 border-t-2 px-14 text-greengray-200" />
 
 
-            <button className=" flex justify-center items-center mt-4 mb-14 mx-auto max-w-sm w-80 py-4 px-4 text-center bg-[#475443] text-white text-xl leading-6"
+            <button className="flex justify-center items-center mt-4 mb-14 mx-auto max-w-sm w-72 py-4 px-4 text-center bg-[#475443] text-white text-xl leading-6"
                 type="submit" value="Donate Now" onClick={OnDonationFormSubmit}>
                 Donate Now
                 <FaChevronRight className="inline ml-3" size={20} />
@@ -349,11 +329,15 @@ const PriceFormat = (amount, currency) => (new Intl.NumberFormat(undefined, {
 function DonationFrequencyRadioItem({ item_id, is_selected, schedule, OnItemClick }) {
     // console.log("Freq State: ", is_selected);
     return (
-        <div className="p-3 flex flex-row flex-wrap gap-2 rounded-md border-greengray-900 items-center cursor-pointer"
+        <div className={
+            `p-3 flex flex-row flex-wrap gap-2 rounded-[5px] border-[1px] border-transparent items-center cursor-pointer hover:border-greengray-900 
+            ${is_selected ? "bg-greengray-900" : ""}
+            `
+        }
             onClick={() => OnItemClick(item_id, schedule)}
         >
             <div className={` w-5 h-5 rounded-full border-2 border-greengray-900 ${is_selected ? "bg-yellowy-900 border-greengray-100" : ""}`}></div>
-            <h3 className="text-sm leading-normal font-bold text-[#707070]">{schedule.repr}</h3>
+            <h3 className={`text-sm leading-normal font-bold text-[#707070] ${is_selected ? "text-white" : ""} `}>{schedule.repr}</h3>
         </div>
     )
 }
@@ -362,11 +346,11 @@ function DonationFrequencyRadioItem({ item_id, is_selected, schedule, OnItemClic
 function DonationAmountRadioItem({ item_id, is_selected, amount, currency, OnItemClick }) {
     // console.log("Amount State: ", is_selected);
     return (
-        <div className="p-2 md:p-3 flex flex-row flex-wrap gap-2 rounded-md border-[1px] border-greengray-900 items-center justify-start md:justify-between cursor-pointer"
+        <div className=" px-[8px] py-[15px] flex flex-row flex-wrap gap-2 rounded-md border-[1px] border-greengray-900 items-center justify-start md:justify-between cursor-pointer"
             onClick={() => OnItemClick(item_id, amount)}
         >
-            <div className={` hidden md:inline-block w-5 h-5 rounded-full border-2 border-greengray-900 ${is_selected ? "bg-yellowy-900 border-greengray-100" : ""}`}></div>
-            <h3 className="text-base font-bold text-greengray-900">{PriceFormat(amount, currency)}</h3>
+            <div className={`max-[370px]:hidden md:inline-block w-5 h-5 rounded-full border-2 border-greengray-900 ${is_selected ? "bg-yellowy-900 border-greengray-100" : ""}`}></div>
+            <h3 className="text-sm leading-normal font-bold text-greengray-900">{PriceFormat(amount, currency)}</h3>
         </div>
     )
 }
@@ -379,20 +363,16 @@ function ServiceCard({ id, text, icon_source, onCardClicked }) {
     const [isCardClicked, setIsCardClicked] = useState(false);
 
     return (
-        <div className="relative flex flex-col justify-center items-center gap-5 pt-5 p-2 border text-center border-greengray-900 rounded-sm bg-white shadow-sm md:mb-0 cursor-pointer hover:scale-95 transition-all"
+        <div className="relative flex flex-col justify-center items-center gap-5 pt-5 px-[10px] pb-4 border text-center border-greengray-900 rounded-sm bg-white shadow-sm cursor-pointer hover:scale-95 transition-all"
             onClick={() => {
                 setIsCardClicked(oldState => !oldState);
                 onCardClicked(id, text);
             }} >
             <div className={` absolute right-1 top-1 w-5 h-5 rounded-full border-2 ${isCardClicked ? "bg-yellowy-900 border-greengray-100" : "border-black-500"}`}></div>
 
-            {
-                typeof icon_source === "object" ? icon_source
-                    :
-                    <img width={30} height={30} className="object-contain" src={icon_source} alt="service icon" />
-            }
+            <img width={36} height={36} className="object-contain" src={icon_source} alt="service icon" />
 
-            <p className="font-medium md:font-semibold text-greengray-900" dangerouslySetInnerHTML={{ __html: text }}>
+            <p className=" max-w-[106px] text-xs leading-normal font-bold md:font-semibold text-greengray-900" dangerouslySetInnerHTML={{ __html: text }}>
             </p>
         </div>
     )

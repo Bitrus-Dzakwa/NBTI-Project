@@ -2,26 +2,33 @@
 import { useCallback, useRef, useState } from "react"
 import { SupabaseFunctions } from "../db/supabase";
 
-import { MdVideoLibrary } from "react-icons/md";
-import { FaBookOpen, FaChevronRight } from "react-icons/fa";
-import { RiTranslate } from "react-icons/ri";
-import { IoLanguage } from "react-icons/io5";
 
+import { FaChevronRight } from "react-icons/fa";
 import StripeLogoPNG from "../assets/stripe.png";
-// import DropDownArrowPNG from "../assets/arrow-down.png";
+import OnItemSelectPNG from "../assets/selected.png";
+
+import { ReactComponent as LanguageResearchSVG } from "../assets/language-img.svg";
+import { ReactComponent as PUblicationSVG } from "../assets/publication-img.svg";
+import { ReactComponent as TranslationSVG } from "../assets/translate-img.svg";
+import { ReactComponent as AudioVideoSVG } from "../assets/audio-video-img.svg";
+import { ReactComponent as OnItemSelectSVG } from "../assets/selected.svg";
+
+
+
 
 
 const ServiceDetails = [
     {
-        text: "Language Research", icon_source: "images/language-img.svg"
+        text: "Language Research", icon_source: LanguageResearchSVG
     }, {
-        text: "Publication Services", icon_source: "images/publication-img.svg"
+        text: "Publication Services", icon_source: PUblicationSVG
     }, {
-        text: "Translation Services", icon_source: "images/translate-img.svg"
+        text: "Translation Services", icon_source: TranslationSVG
     }, {
-        text: "Audio and Video Production", icon_source: "images/audio-video-img.svg"
+        text: "Audio and Video Production", icon_source: AudioVideoSVG
     },
 ];
+
 
 const DonationScheduleList =
     [
@@ -48,6 +55,7 @@ const DonationScheduleList =
     ];
 
 
+const SupportedCurrencies = ["NGN", "USD", "EUR", "GBP", "CND"];
 const Currency__To__DonationAmount__Map = {
     "NGN": [1000, 5000, 20000, 50000, 100000, 200000, 500000, 1000000],
     "USD": [1, 5, 10, 20, 50, 100, 200, 500],
@@ -55,8 +63,6 @@ const Currency__To__DonationAmount__Map = {
     "GBP": [1, 5, 10, 20, 50, 100, 200, 500],
     "CND": [1, 5, 10, 20, 50, 100, 200, 500],
 }
-
-const SupportedCurrencies = ["NGN", "USD", "EUR", "GBP", "CND"];
 
 
 const initialFormState = {
@@ -299,18 +305,7 @@ async function Create__StripeCheckout(checkout_payload) {
         body: {
             name: 'donate_form_call',
             stripe_payload: checkout_payload
-            // stripe_payload: {
-            //     ...checkout_payload,
-
-            //     // client_ref: 987654321,
-            //     // amount: checkout_payload.amount,
-            //     // currency: checkout_payload.currency.symbol,
-            //     // details: checkout_payload.detai "Bible Translation from English to Yoruba",
-            //     // is_reccuring_donation: false,
-            //     // sponsored_services: "Bible Translation",
-            //     // subscription: null
-            // }
-        },
+        }
     });
 
 }
@@ -331,12 +326,16 @@ function DonationFrequencyRadioItem({ item_id, is_selected, schedule, OnItemClic
     return (
         <div className={
             `p-3 flex flex-row flex-wrap gap-2 rounded-[5px] border-[1px] border-transparent items-center cursor-pointer hover:border-greengray-900 
-            ${is_selected ? "bg-greengray-900" : ""}
-            `
-        }
+                ${is_selected ? "bg-greengray-900" : ""}
+            `}
             onClick={() => OnItemClick(item_id, schedule)}
         >
-            <div className={` w-5 h-5 rounded-full border-2 border-greengray-900 ${is_selected ? "bg-yellowy-900 border-greengray-100" : ""}`}></div>
+            {
+                is_selected ?
+                    <img src={OnItemSelectPNG} />
+                    :
+                    <div className={` w-5 h-5 rounded-full border-2 border-greengray-900 ${is_selected ? "bg-yellowy-900 border-greengray-100" : ""}`}></div>
+            }
             <h3 className={`text-sm leading-normal font-bold text-[#707070] ${is_selected ? "text-white" : ""} `}>{schedule.repr}</h3>
         </div>
     )
@@ -346,12 +345,20 @@ function DonationFrequencyRadioItem({ item_id, is_selected, schedule, OnItemClic
 function DonationAmountRadioItem({ item_id, is_selected, amount, currency, OnItemClick }) {
     // console.log("Amount State: ", is_selected);
     return (
-        <div className=" px-[8px] py-[15px] flex flex-row flex-wrap gap-2 rounded-md border-[1px] border-greengray-900 items-center justify-start md:justify-between cursor-pointer"
+        <div className={
+            `px-[8px] py-[15px] flex flex-row flex-wrap gap-2 rounded-md border-[1px] border-greengray-900 items-center justify-start md:justify-between cursor-pointer transition-all
+                ${is_selected ? "bg-greengray-900 hover:scale-[1.02]" : "hover:bg-greengray-200 "}
+        `}
             onClick={() => OnItemClick(item_id, amount)}
         >
-            <div className={`max-[370px]:hidden md:inline-block w-5 h-5 rounded-full border-2 border-greengray-900 ${is_selected ? "bg-yellowy-900 border-greengray-100" : ""}`}></div>
-            <h3 className="text-sm leading-normal font-bold text-greengray-900">{PriceFormat(amount, currency)}</h3>
-        </div>
+            {
+                is_selected ?
+                    <img src={OnItemSelectPNG} />
+                    :
+                    <div className="w-5 h-5 rounded-full border-2 border-greengray-900"></div>
+            }
+            <h3 className={`text-sm leading-normal font-bold text-greengray-900 ${is_selected ? "text-white" : ""} `}>{PriceFormat(amount, currency)}</h3>
+        </div >
     )
 }
 
@@ -363,16 +370,26 @@ function ServiceCard({ id, text, icon_source, onCardClicked }) {
     const [isCardClicked, setIsCardClicked] = useState(false);
 
     return (
-        <div className="relative flex flex-col justify-center items-center gap-5 pt-5 px-[10px] pb-4 border text-center border-greengray-900 rounded-sm bg-white shadow-sm cursor-pointer hover:scale-95 transition-all"
+        <div className={
+            `relative flex flex-col justify-center items-center gap-5 pt-5 px-[10px] pb-4 border text-center border-greengray-900 rounded-md shadow-xl cursor-pointer hover:border-transparent hover:scale-105 transition-all
+            ${isCardClicked ? " bg-greengray-900" : "hover:bg-[#FFFBF2] "}
+        `}
             onClick={() => {
                 setIsCardClicked(oldState => !oldState);
                 onCardClicked(id, text);
             }} >
-            <div className={` absolute right-1 top-1 w-5 h-5 rounded-full border-2 ${isCardClicked ? "bg-yellowy-900 border-greengray-100" : "border-black-500"}`}></div>
 
-            <img width={36} height={36} className="object-contain" src={icon_source} alt="service icon" />
+            {
+                isCardClicked ?
+                    <OnItemSelectSVG className="absolute right-1 top-1 w-5 h-5 hover:bg-greengray-900 hover:text-greengray-900" />
+                    :
+                    <div className={`absolute right-1 top-1 w-5 h-5 rounded-full border-2 hover:border-greengray-900 ${isCardClicked ? "bg-yellowy-900 border-greengray-100" : "border-greengray-500"}`}></div>
+            }
 
-            <p className=" max-w-[106px] text-xs leading-normal font-bold md:font-semibold text-greengray-900" dangerouslySetInnerHTML={{ __html: text }}>
+            {/* LOC below is assisted by a custom css rule in [index.css] */}
+            {icon_source({ id: "donation-service-card", fill: isCardClicked ? "white" : "#475443" })}
+
+            <p className={` max-w-[106px] text-xs leading-normal font-bold md:font-semibold ${isCardClicked ? " text-white " : "text-greengray-900 "} `} dangerouslySetInnerHTML={{ __html: text }}>
             </p>
         </div>
     )

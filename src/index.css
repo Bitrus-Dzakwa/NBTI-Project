@@ -32,3 +32,10 @@
     }
   }
 }
+
+/* simple hack to allow "SVG" "path" inherit styling applied to parent (<svg>) from JSX component.
+   -> see DonateForm.jsx [ServiceCard]
+*/
+#donation-service-card path {
+  fill: inherit;
+}

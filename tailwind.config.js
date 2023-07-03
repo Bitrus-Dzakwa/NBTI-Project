@@ -26,6 +26,7 @@ export default {
       backgroundImage: {
         banner: "url('/image11.png')",
         dropdown_chevron: "url('/arrow-down.png')",
+        donate: "url('/images/Donate-page-img.png')"
       },
     },
   },

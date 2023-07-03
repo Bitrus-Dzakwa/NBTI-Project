@@ -18,7 +18,8 @@
     "react-icons": "^4.8.0",
     "react-router-dom": "^6.11.2",
     "react-scroll": "^1.8.9",
-    "stripe": "^12.10.0"
+    "stripe": "^12.10.0",
+    "vite-plugin-svgr": "^3.2.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.37",

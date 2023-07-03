@@ -4,7 +4,7 @@ import VolunteerHeader from "./VolunteerHeader";
 
 function VolunteerSection() {
   return (
-    <div className="flex mb-10">
+    <div className="flex">
       <section className="w-2/5 hidden md:block">
         <img
           src={VolunteerPageIMG}

@@ -61,7 +61,7 @@ const Currency__To__DonationAmount__Map = {
     "USD": [1, 5, 10, 20, 50, 100, 200, 500],
     "EUR": [1, 5, 10, 20, 50, 100, 200, 500],
     "GBP": [1, 5, 10, 20, 50, 100, 200, 500],
-    "CND": [1, 5, 10, 20, 50, 100, 200, 500],
+    "CAD": [1, 5, 10, 20, 50, 100, 200, 500],
 }
 
 
@@ -313,6 +313,7 @@ async function Create__StripeCheckout(checkout_payload) {
 
 
 
+
 // const CURRENCY_AMOUNT_REGEX = RegExp(`^[0-9,]+$`);
 const PriceFormat = (amount, currency) => (new Intl.NumberFormat(undefined, {
     style: "currency",
@@ -364,8 +365,6 @@ function DonationAmountRadioItem({ item_id, is_selected, amount, currency, OnIte
 
 
 function ServiceCard({ id, text, icon_source, onCardClicked }) {
-
-    // console.log("Type: ", typeof icon_source, icon_source);
 
     const [isCardClicked, setIsCardClicked] = useState(false);
 

@@ -66,7 +66,7 @@ const VolunteerForm = memo(function VolunteerForm() {
           <div className="w-full">
             <label className="text-base text-darkishtext-100" id="availability">Availability</label> <br />
             <textarea className="w-full rounded-md mt-2 py-2 px-4 bg-[#103f021a]"
-              placeholder="Explain your availability" cols={6} autoComplete="true" autoCorrect="true" autoSave="true"
+              placeholder="Explain your availability" cols={6} autoComplete="true" autoCorrect="true" autoSave="true" rows={6} required
             />
           </div>
 

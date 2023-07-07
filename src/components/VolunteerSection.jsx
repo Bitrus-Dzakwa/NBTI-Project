@@ -4,7 +4,7 @@ import VolunteerHeader from "./VolunteerHeader";
 
 function VolunteerSection() {
   return (
-    <div className="flex">
+    <div className="flex overflow-hidden">
       <section className="w-2/5 hidden md:block">
         <img
           src={VolunteerPageIMG}

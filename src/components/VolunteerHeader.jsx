@@ -14,7 +14,7 @@ const VolunteerHeader = memo(function VolunteerHeader() {
           Back To Home
         </h3>
       </Link>
-      <header className="flex flex-col gap-3 px-10 mt-8 text-center">
+      <header className="flex flex-col gap-3 px-6 md:px-10 mt-8 text-center">
         <h3 className="text-center text-darkishtext-100 text-[1.75rem] leading-10 font-bold" > Be a Changemaker: Volunteer with us </h3>
         <p className="text-sm font-normal text-[#001e16cc]">Lorem ipsum dolor sit amet consectetur adipescent elit dolor posuere vel venenatis eusit massa volutpat. </p>
       </header>

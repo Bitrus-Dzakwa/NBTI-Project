@@ -21,7 +21,7 @@ function Modal({ modalContent, isOpen, onClose, overlayStyle, closeOnOutsideClic
 
 	return isOpen ?
 		createPortal(
-			<div id={styles["react_portal_overlay"]} style={{ display: hideModal ? "none" : "block" }} onClick={OnModalClose}>
+			<div id={styles["react_portal_overlay"]} style={{ display: hideModal ? "none" : "flex" }} onClick={OnModalClose}>
 				<div className={styles["bg-overlay"]} style={overlayStyle || defaultOverlayStyle} />
 				{modalContent}
 			</div>,

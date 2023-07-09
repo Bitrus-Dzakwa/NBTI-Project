@@ -1,5 +1,6 @@
 import { memo, useCallback } from "react"
-
+import Modal from "./Modals/Modal";
+import { OscilatingBarModal } from "./Modals";
 
 
 const VolunteerForm = memo(function VolunteerForm() {
@@ -79,6 +80,8 @@ const VolunteerForm = memo(function VolunteerForm() {
         </form>
 
       </section>
+
+      <Modal modalContent={<OscilatingBarModal />} isOpen={true} closeOnOutsideClick={true} /> 
 
     </>
   )

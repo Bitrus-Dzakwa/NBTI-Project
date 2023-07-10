@@ -1,10 +1,4 @@
-/* .oscillating_bar_loader {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-} */
+
 
 .jimu-primary-loading:before,
 .jimu-primary-loading:after {
@@ -82,7 +76,7 @@
 .
 .
 .
-Sets the modal Overlay.
+Sets the modal overlay.
 */
 #react_portal_overlay {
   position: fixed;

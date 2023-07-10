@@ -1,14 +1,32 @@
 import { memo, useCallback } from "react"
 import Modal from "./Modals/Modal";
 import { OscilatingBarModal } from "./Modals";
+import { useState } from "react";
 
 
 const VolunteerForm = memo(function VolunteerForm() {
 
-  const OnFormSubmit = useCallback(
-    (e) => {
-      console.log("[Volunteer Form Submitted]:", e);
+  const [modalState, setModalOpenState] = useState(false);
+
+  const OnFormSubmit = useCallback( (e) => 
+    {
       e.preventDefault();
+      console.log("[Volunteer Form Submitted]:", e.target);
+
+      const data = new FormData(e.target);
+  
+      console.log(data.get('email')); // Reference by form input's `name` tag
+
+      setModalOpenState(true);
+
+      setTimeout(() => {
+        setModalOpenState(false);
+      }, 5000);
+      // fetch('/api/form-submit-url', {
+      //   method: 'POST',
+      //   body: data,
+      // });
+
     },
     []);
 
@@ -17,7 +35,8 @@ const VolunteerForm = memo(function VolunteerForm() {
     <>
       <h3 className="text-xl leading-6 text-darkishtext-100 font-normal mt-[1.875rem]">Please fill the Form</h3>
       <section className="mt-5">
-        <form className="flex flex-col gap-5" action="" method="post">
+
+        <form className="flex flex-col gap-5" method="post" onSubmit={OnFormSubmit}>
 
           <div className="w-full">
             <label className="text-base text-darkishtext-100" id="fullname">Full Name</label> <br />
@@ -66,13 +85,13 @@ const VolunteerForm = memo(function VolunteerForm() {
 
           <div className="w-full">
             <label className="text-base text-darkishtext-100" id="availability">Availability</label> <br />
-            <textarea className="w-full rounded-md mt-2 py-2 px-4 bg-[#103f021a]"
+            <textarea className="w-full rounded-md mt-2 py-2 px-4 bg-[#103f021a]" name="availability"
               placeholder="Explain your availability" cols={6} autoComplete="true" autoCorrect="true" autoSave="true" rows={6} required
             />
           </div>
 
           <button className="mt-6 mx-auto max-w-sm w-80 py-4 px-4 text-center bg-[#475443] text-white text-xl leading-6"
-            type="submit" value="Volunteer Now" onSubmit={OnFormSubmit}
+            type="submit" value="Volunteer Now"
           >
             Volunteer Now
           </button>
@@ -81,7 +100,7 @@ const VolunteerForm = memo(function VolunteerForm() {
 
       </section>
 
-      <Modal modalContent={<OscilatingBarModal />} isOpen={true} closeOnOutsideClick={true} /> 
+      <Modal modalContent={<OscilatingBarModal />} isOpen={modalState} closeOnOutsideClick={true} /> 
 
     </>
   )

@@ -11,8 +11,8 @@ console.log(VOLUNTEER_FORM_TEMPLATE, "===========LOGGED==========");
 const transporter = createTransport({
 	service: 'gmail',
 	auth: {
-		user: 'bitrusjospeh@gmail.com' || Deno.env.get('MAIL_ADDRESS'),
-		pass: 'vhzlgytprzqybzhg' || Deno.env.get('APP_PASSWORD'),
+		user: Deno.env.get('MAIL_ADDRESS'),
+		pass: Deno.env.get('APP_PASSWORD'),
 	}
 });
 

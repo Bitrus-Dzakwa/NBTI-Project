@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 
 import {
   Home,
@@ -12,23 +12,58 @@ import {
 } from "./pages";
 import { NavBar } from "./components";
 
-function App() {
-  return (
-    <>
-      <NavBar />
 
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/donate" element={<Donate />} />
-        <Route path="/works" element={<Works />} />
-        {/* <Route path="/news" element={<News />} /> */}
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/getInvolved" element={<GetInvolved />} />
-        <Route path="/volunteer" element={<Volunteer />} />
-      </Routes>
-    </>
-  );
+
+
+
+const LayoutRoute = () => (
+  <>
+  <NavBar />
+  <Outlet />
+</>
+);
+
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <LayoutRoute />,
+    children: [
+      { index: true,  element: <Home /> },
+      {
+        path: "volunteer",
+        element: <Volunteer />,
+      },
+      {
+        path: "about",
+        element: <About />,
+      },
+      {
+        path: "donate",
+        element: <Donate />,
+      },
+      {
+        path: "works",
+        element: <Works />,
+      },
+      {
+        path: "contact",
+        element: <Contact />,
+      },
+      {
+        path: "getInvolved",
+        element: <GetInvolved />,
+      }
+      // {
+      //   path: "news",
+      //   element: <News />,
+      // },
+    ],
+  },
+]);
+
+function App() {
+  return  <RouterProvider router={router} />;
 }
 
 export default App;

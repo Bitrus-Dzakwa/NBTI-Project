@@ -21,7 +21,7 @@ function Testimonial() {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 px-8 md:px-24 gap-16 place-content-center">
         <Testimony
-          name="jane Doe"
+          name="Nicholas James Mundat"
           Img={testi1}
           position="business"
           testimony="My name is Nicholas James Mundat, the T A 1 of mindat language.

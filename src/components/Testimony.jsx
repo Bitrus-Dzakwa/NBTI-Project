@@ -1,8 +1,8 @@
 import { FaQuoteRight } from "react-icons/fa";
 
-import Img from "../assets/placeholder.jpg";
+// import Img from "../assets/placeholder.jpg";
 
-function Testimony({ name, position, testimony }) {
+function Testimony({ name, position, testimony, Img }) {
   return (
     <div className="bg-white">
       <div className="my-4">

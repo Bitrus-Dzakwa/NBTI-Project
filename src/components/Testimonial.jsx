@@ -42,7 +42,7 @@ The global partners that are supporting this course, may God bless you all. Shal
           name="john maxwell"
           Img={testi1}
           position="lead-consultant inc"
-          testimony="Support a Bible translation project by becoming a sponsor. You can help us in funding the translation of the Bible into a specific language. Support a Bible translation project by becoming a sponsor. You can help us in funding the translation of the Bible into a specific language.Support a Bible translation project by becoming a sponsor. You can help us in funding the translation of the Bible into a specific language. iko9andfnslf slfsofsof sfsofsofnsfn slfjsofsnoflksnf sfjsofnsofsnf slfjsofjs slfsof sfsl foslfsladkjf"
+          testimony="NBTI are helping people generally and they are feeding the attendance in Bible translation financially, feeding, accomodation and mostly real teaching."
         />
       </div>
     </div>

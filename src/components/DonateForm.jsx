@@ -11,6 +11,12 @@ import { ReactComponent as LanguageResearchSVG } from "../assets/language-img.sv
 import { ReactComponent as PUblicationSVG } from "../assets/publication-img.svg";
 import { ReactComponent as TranslationSVG } from "../assets/translate-img.svg";
 import { ReactComponent as AudioVideoSVG } from "../assets/audio-video-img.svg";
+
+import { ReactComponent as TrainingCapacityBuildSVG } from "../assets/training-capacity-build-img.svg";
+import { ReactComponent as ConsultationSVG } from "../assets/consultation-service-img.svg";
+import { ReactComponent as CommunityOutreachSVG } from "../assets/community-outreach-img.svg";
+import { ReactComponent as VolunteerOppurtunitySVG } from "../assets/volunteer-oppurtunity-img.svg";
+
 import { ReactComponent as OnItemSelectSVG } from "../assets/selected.svg";
 
 
@@ -26,6 +32,14 @@ const ServiceDetails = [
         text: "Translation Services", icon_source: TranslationSVG
     }, {
         text: "Audio and Video Production", icon_source: AudioVideoSVG
+    },{
+        text: "Training and Capacity Building", icon_source: TrainingCapacityBuildSVG
+    },{
+        text: "Consultation Services", icon_source: ConsultationSVG
+    },{
+        text: "Community Outreach", icon_source: CommunityOutreachSVG
+    },{
+        text: "Volunteer Oppurtunities", icon_source: VolunteerOppurtunitySVG
     },
 ];
 
@@ -305,6 +319,20 @@ async function Create__StripeCheckout(checkout_payload) {
         body: {
             name: 'donate_form_call',
             stripe_payload: checkout_payload
+        }
+    });
+
+}
+
+
+async function Create__PaystackCheckout(checkout_payload) {
+
+    console.log("Create_Paystack_Checkout Called =================== ");
+
+    return await SupabaseFunctions.invoke('paystack-checkout', {
+        body: {
+            name: 'donate_form_call',
+            paystack_payload: checkout_payload
         }
     });
 

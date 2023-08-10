@@ -8,7 +8,6 @@ import { corsHeaders } from "../_shared/cors.ts";
 
 
 
-
 console.log("Hello from Functions!");
 console.log("CHECKOUT: ", Deno.env.get('STRIPE_CHECKOUT_SECRET_KEY'));
 

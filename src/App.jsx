@@ -18,9 +18,9 @@ import { NavBar } from "./components";
 
 const LayoutRoute = () => (
   <>
-  <NavBar />
-  <Outlet />
-</>
+    <NavBar />
+    <Outlet />
+  </>
 );
 
 
@@ -29,7 +29,7 @@ const router = createBrowserRouter([
     path: "/",
     element: <LayoutRoute />,
     children: [
-      { index: true,  element: <Home /> },
+      { index: true, element: <Home /> },
       {
         path: "volunteer",
         element: <Volunteer />,
@@ -63,7 +63,7 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return  <RouterProvider router={router} />;
+  return <RouterProvider router={router} />;
 }
 
 export default App;

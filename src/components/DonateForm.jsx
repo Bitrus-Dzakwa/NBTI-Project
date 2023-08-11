@@ -1,5 +1,5 @@
 
-import { useCallback, useRef, useState } from "react"
+import { useCallback, useRef, useState, useMemo } from "react"
 import { SupabaseFunctions } from "../db/supabase";
 
 
@@ -11,7 +11,6 @@ import { ReactComponent as LanguageResearchSVG } from "../assets/language-img.sv
 import { ReactComponent as PUblicationSVG } from "../assets/publication-img.svg";
 import { ReactComponent as TranslationSVG } from "../assets/translate-img.svg";
 import { ReactComponent as AudioVideoSVG } from "../assets/audio-video-img.svg";
-
 import { ReactComponent as TrainingCapacityBuildSVG } from "../assets/training-capacity-build-img.svg";
 import { ReactComponent as ConsultationSVG } from "../assets/consultation-service-img.svg";
 import { ReactComponent as CommunityOutreachSVG } from "../assets/community-outreach-img.svg";
@@ -32,13 +31,13 @@ const ServiceDetails = [
         text: "Translation Services", icon_source: TranslationSVG
     }, {
         text: "Audio and Video Production", icon_source: AudioVideoSVG
-    },{
+    }, {
         text: "Training and Capacity Building", icon_source: TrainingCapacityBuildSVG
-    },{
+    }, {
         text: "Consultation Services", icon_source: ConsultationSVG
-    },{
+    }, {
         text: "Community Outreach", icon_source: CommunityOutreachSVG
-    },{
+    }, {
         text: "Volunteer Oppurtunities", icon_source: VolunteerOppurtunitySVG
     },
 ];
@@ -67,9 +66,11 @@ const DonationScheduleList =
             freq: 1
         }
     ];
+// The interval at which to charge subscriptions on this plan. 
+// Available options are hourly, daily, weekly, monthly, quarterly, biannually (every 6 months) and annually
 
-
-const SupportedCurrencies = ["NGN", "USD", "EUR", "GBP", "CND"];
+const StripeSupportedCurrencies = ["NGN", "USD", "EUR", "GBP", "CND"];
+const PaystackSupportedCurrencies = ["NGN", "USD", "RND"];
 const Currency__To__DonationAmount__Map = {
     "NGN": [1000, 5000, 20000, 50000, 100000, 200000, 500000, 1000000],
     "USD": [1, 5, 10, 20, 50, 100, 200, 500],
@@ -96,10 +97,20 @@ const initialFormState = {
 function DonateForm() {
     const DonationFormState = useRef(initialFormState);
 
+    const [paymentProcessor, updatePaymentProcessor] = useState("paystack");
     const [selectedServices, setSelectedServices] = useState(Array(ServiceDetails.length));
     const [donationSchedule, setDonationSchedule] = useState(Array(DonationScheduleList.length).fill(false));
     const [donationAmount, setDonationAmount] = useState(Array(Currency__To__DonationAmount__Map["NGN"].length + 1).fill(false));
     const [currency, setCurrency] = useState(initialFormState.currency);
+
+
+    const OnPaymentProcessorChange = useCallback(() => {
+        (paymentProcessor === "paystack") ?
+            updatePaymentProcessor(() => "stripe")
+            :
+            updatePaymentProcessor(() => "paystack")
+    }, [paymentProcessor]);
+
 
 
     const OnServiceCardClicked = useCallback((card_id, text) => {
@@ -232,7 +243,12 @@ function DonateForm() {
                         }}
                     >
                         {
-                            SupportedCurrencies.map((currency, index) => <option key={index} value={currency}>{currency}</option>)
+                            paymentProcessor === "paystack"
+                                ?
+                                PaystackSupportedCurrencies.map((currency, index) => <option key={index} value={currency}>{currency}</option>)
+                                :
+                                StripeSupportedCurrencies.map((currency, index) => <option key={index} value={currency}>{currency}</option>)
+
                         }
                     </select>
 
@@ -284,11 +300,23 @@ function DonateForm() {
             </section>
 
 
+
             <h3 className="text-sm font-semibold text-darkishtext-100 mt-5">Pay Via:</h3>
-            <section className="flex flex-row items-center mt-1">
+
+            <section className="flex flex-row items-center mt-1"
+                onClick={OnPaymentProcessorChange}
+            >
                 <div className={`w-6 h-6 mr-1 rounded-full border-2 border-greengray-200 bg-yellowy-900`}></div>
                 <img src={StripeLogoPNG} alt="Stripe Logo" />
             </section>
+
+            <section className="flex flex-row items-center mt-1"
+                onClick={OnPaymentProcessorChange}
+            >
+                <div className={`w-6 h-6 mr-1 rounded-full border-2 border-greengray-200 bg-yellowy-900`}></div>
+                <img src={StripeLogoPNG} alt="Stripe Logo" />
+            </section>
+
 
 
             <hr className="h-[6px] mt-4 border-t-2 px-14 text-greengray-200" />

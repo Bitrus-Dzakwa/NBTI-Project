@@ -73,11 +73,13 @@ const StripeSupportedCurrencies = ["NGN", "USD", "EUR", "GBP", "CND"];
 const PaystackSupportedCurrencies = ["NGN", "USD", "RND"];
 const Currency__To__DonationAmount__Map = {
     "NGN": [1000, 5000, 20000, 50000, 100000, 200000, 500000, 1000000],
+    "RND": [1000, 5000, 20000, 50000, 100000, 200000, 500000, 1000000],
     "USD": [1, 5, 10, 20, 50, 100, 200, 500],
     "EUR": [1, 5, 10, 20, 50, 100, 200, 500],
     "GBP": [1, 5, 10, 20, 50, 100, 200, 500],
     "CAD": [1, 5, 10, 20, 50, 100, 200, 500],
 }
+
 
 
 const initialFormState = {
@@ -306,15 +308,15 @@ function DonateForm() {
             <section className="flex flex-row items-center mt-1"
                 onClick={OnPaymentProcessorChange}
             >
-                <div className={`w-6 h-6 mr-1 rounded-full border-2 border-greengray-200 bg-yellowy-900`}></div>
+                <div className={`w-6 h-6 mr-1 rounded-full border-2 border-greengray-200 ${paymentProcessor === "stripe" ? "bg-yellowy-900" : ""}`}></div>
                 <img src={StripeLogoPNG} alt="Stripe Logo" />
             </section>
 
             <section className="flex flex-row items-center mt-1"
                 onClick={OnPaymentProcessorChange}
             >
-                <div className={`w-6 h-6 mr-1 rounded-full border-2 border-greengray-200 bg-yellowy-900`}></div>
-                <img src={StripeLogoPNG} alt="Stripe Logo" />
+                <div className={`w-6 h-6 mr-1 rounded-full border-2 border-greengray-200 ${paymentProcessor === "paystack" ? "bg-yellowy-900" : ""}`}></div>
+                <img src={StripeLogoPNG} alt="Paystack Logo" />
             </section>
 
 

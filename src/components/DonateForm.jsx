@@ -305,14 +305,14 @@ function DonateForm() {
 
             <h3 className="text-sm font-semibold text-darkishtext-100 mt-5">Pay Via:</h3>
 
-            <section className="flex flex-row items-center mt-1"
+            <section className="inline-flex flex-row items-center mt-1"
                 onClick={OnPaymentProcessorChange}
             >
                 <div className={`w-6 h-6 mr-1 rounded-full border-2 border-greengray-200 ${paymentProcessor === "stripe" ? "bg-yellowy-900" : ""}`}></div>
                 <img src={StripeLogoPNG} alt="Stripe Logo" />
             </section>
 
-            <section className="flex flex-row items-center mt-1"
+            <section className="inline-flex flex-row items-center mt-1 ml-6"
                 onClick={OnPaymentProcessorChange}
             >
                 <div className={`w-6 h-6 mr-1 rounded-full border-2 border-greengray-200 ${paymentProcessor === "paystack" ? "bg-yellowy-900" : ""}`}></div>
